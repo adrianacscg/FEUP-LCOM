@@ -74,27 +74,23 @@ int set_graphics_mode(uint16_t mode)
 }
 
 int putPixel(uint16_t x, uint16_t y, uint32_t color)
+
 {
-  if (color == TRANSPARENCY_COLOR_8_8_8_8 || color == 0x0) {
-    return 0;
-  }
   if(video_mem == NULL) printf("video_mem NULL\n");
   if(x > vmi_p.XResolution || y > vmi_p.YResolution)
   //if the x or the y is outside of the resolution of the frame_buffer
     return 0;
-
-  uint32_t num_bytes_pixel = (vmi_p.BitsPerPixel)/32;
+  uint32_t num_bytes_pixel = (vmi_p.BitsPerPixel)/8; //alterar -> pode ser 15
   uint32_t pos = (y * vmi_p.XResolution + x)*num_bytes_pixel;
   uint8_t *ptr = (uint8_t*) video_mem + pos;
   //matrix: go to the y (line) * xresolution + x(collumn)
-  uint8_t r, g, b;
-  r = (color & vmi_p.RedFieldPosition) >> vmi_p.RedMaskSize;
-  g = (color & vmi_p.GreenFieldPosition) >> vmi_p.GreenMaskSize;
-  b = (color & vmi_p.BlueFieldPosition) >> vmi_p.BlueMaskSize;
-  color = (r << vmi_p.RedFieldPosition) | (g << vmi_p.GreenFieldPosition) | b;
+
   memcpy(ptr, &color, num_bytes_pixel);
+
   return 0;
+
 }
+
 
 int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color)
 {
@@ -155,22 +151,28 @@ int draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t s
 
 int use_xpm(xpm_map_t xpm, uint16_t x, uint16_t y)
 {
+  uint8_t* sprite;
   xpm_image_t img;
-  enum xpm_image_type type = XPM_8_8_8;
-  uint8_t*map;// get the pixmap from the XPM
-  map = xpm_load(xpm, type, &img);// copy it to graphics memory
-
-  for (int i = 0; i < img.height; i++ ) {
-      for (int j = 0; j < img.width; j++) {
-
-        if (putPixel(j + x, i + y, map[i * img.width + j]) != 0) {
-        vg_exit();
-        printf("Failed to draw rectangle");
-        return 1;
-        }
+  sprite = xpm_load(xpm, XPM_5_6_5, &img);
+  memset(video_mem, 0xff, vmi_p.XResolution*vmi_p.YResolution*2);
+  int bcount = 0;
+  for (int i = y; i < img.height + y; i++)
+  {
+    for(int j = x; j < img.width + x; j++)
+    {
+      if(((uint16_t*)(img.bytes))[bcount] != xpm_transparency_color(img.type))
+      {
+        putPixel(j, i, ((uint16_t*)(img.bytes))[bcount]);
       }
+      else
+      {
+        putPixel(j, i, 0);
+      }
+      
+      bcount++;
     }
-    return 0;
+  }
+  return 0;
 }
 
 int clean_screen_and_draw(xpm_map_t xpm, uint16_t x, uint16_t y)
