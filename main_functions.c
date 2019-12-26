@@ -23,7 +23,7 @@ extern struct packet pack;
 extern int byte_no;
 extern unsigned int timer_counter;
 extern uint16_t pos_x, pos_y;
-extern bool loading, choose, menu, eat, sleeping, mini_game, eating_action, lobby, ate;
+extern bool loading, choose, menu, eat, sleeping, mini_game, eating_action, lobby, ate, mg_enter;
 extern uint16_t xres, yres;
 extern xpm_image_t load_bc, choose_character, cursor, border, not_implemented, day, night;
 extern xpm_image_t rudolph_meio_baixo, rudolph_meio_cima, rudolph_esquerda_cima, rudolph_esquerda_baixo, rudolph_direita_cima, rudolph_direita_baixo;
@@ -34,7 +34,7 @@ extern enum food_bar food_barra;
 extern enum play_bar play_barra;
 extern enum counter counter_barra;
 
-extern xpm_image_t minigame_sky, cloud;
+extern xpm_image_t minigame_sky, cloud, mg_menu;
 
 int timer_manager()
 {
@@ -95,14 +95,17 @@ int timer_manager()
       use_xpm(&play_bar,850, 280); 
     }    
 
-    if(mini_game)
+    if(mini_game && ! mg_enter)
     {
-      use_xpm(&counter, 138, 216);
-      /*THINGS I ADDED - para ser mais facil encontrar/corrigir */
-      use_xpm(&minigame_sky, 0, 0);
-      //use_xpm(&cloud, 138, 100);  //still testing the x and y values
       
-
+      /*THINGS I ADDED - para ser mais facil encontrar/corrigir */
+      use_xpm(&mg_menu, 0, 0);
+      //use_xpm(&cloud, 138, 100);  //still testing the x and y values
+    }
+    if(mini_game && mg_enter)
+    {
+      use_xpm(&minigame_sky, 0, 0);
+      use_xpm(&counter, 138, 216);
     }
        
 
@@ -126,7 +129,12 @@ int keyboard_manager()
     sleeping = false;
     eat = false;
     mini_game = false;
+    mg_enter = false;
     counter_barra = C15;
+  }
+  if(mini_game && scancode[0] == ENTER_BREAK_CODE)
+  {
+    mg_enter = true;
   }
   return 0;
 }
