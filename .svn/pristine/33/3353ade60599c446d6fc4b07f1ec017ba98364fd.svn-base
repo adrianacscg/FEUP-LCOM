@@ -1,0 +1,3847 @@
+@lcflib.a:2019, lcf_start
+  proj_main_loop(argc, argv)
+> proj_main_loop(0, [NULL])
+  @video_card.c:23, set_graphics_mode
+    vbe_get_mode_info(mode, &vmi_p)
+  > vbe_get_mode_info(0x11a, addr: 0x85b5584)
+  < vbe_get_mode_info(0x11a, addr: 0x85b5584 [0xe0000000, 1280x1024, 5:6:5 (16) <2.5 MiB>]) -> (ret: 0)
+  @video_card.c:41, set_graphics_mode
+    sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
+  > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff6b8 [0xe0000000 - 0xe0280000 <2.5 MiB>])
+  < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
+  @video_card.c:44, set_graphics_mode
+    vm_map_phys(SELF, (void *)mr.mr_base, vram_size)
+  < vm_map_phys(SELF, addr: 0xe0000000, 2.5 MiB) -> (ret: 0xef77b000)
+  @video_card.c:60, set_graphics_mode
+    sys_int86(&r86)
+  > sys_int86(addr: 0xeffff690 [AX: 4f02, BX: 411a, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+  < sys_int86(addr: 0xeffff690 [AX: 004f, BX: 411a, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  @proj.c:82, proj_main_loop
+    xpm_load(loading_xpm, XPM_5_6_5, &load_bc)
+  > xpm_load(addr: 0x8535744, XPM_5_6_5, addr: 0xeffff748)
+  < xpm_load(addr: 0x8535744, XPM_5_6_5, addr: 0xeffff748 [1280x1024 : 2621440 bytes]) -> (ret: 0x8877000)
+  @proj.c:83, proj_main_loop
+    xpm_load(choose_char_2_xpm, XPM_5_6_5, &choose_char)
+  > xpm_load(addr: 0x8539544, XPM_5_6_5, addr: 0xeffff738)
+  < xpm_load(addr: 0x8539544, XPM_5_6_5, addr: 0xeffff738 [1280x1024 : 2621440 bytes]) -> (ret: 0x8af7000)
+  @proj.c:90, proj_main_loop
+    xpm_load(cursor_xpm, XPM_5_6_5, &cursor)
+  > xpm_load(addr: 0x853d218, XPM_5_6_5, addr: 0xeffff728)
+  < xpm_load(addr: 0x853d218, XPM_5_6_5, addr: 0xeffff728 [77x83 : 12782 bytes]) -> (ret: 0x85dd000)
+  @keyboard.c:60, kbd_subscribe_int
+    sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_kbd)
+  > sys_irqsetpolicy(1, 3, addr: 0x85d145c [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x85d145c [10]) -> (ret: 0)
+  @mouse.c:54, mouse_subscribe_int
+    sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_mouse)
+  > sys_irqsetpolicy(12, 3, addr: 0x85d1464 [12])
+  < sys_irqsetpolicy(12, 3, addr: 0x85d1464 [11]) -> (ret: 0)
+  @proj.c:105, proj_main_loop
+    sys_irqdisable(&hook_id_mouse)
+  > sys_irqdisable(addr: 0x85d1464 [11])
+  < sys_irqdisable(addr: 0x85d1464 [11]) -> (ret: 0)
+  @proj.c:107, proj_main_loop
+    mouse_enable_data_reporting()
+  @proj.c:109, proj_main_loop
+    sys_irqenable(&hook_id_mouse)
+  > sys_irqenable(addr: 0x85d1464 [11])
+  < sys_irqenable(addr: 0x85d1464 [11]) -> (ret: 0)
+  @proj.c:111, proj_main_loop
+    timer_subscribe_int(&bit_no_timer)
+  > timer_subscribe_int(addr: 0xeffff75e [84])
+    @timer.c:68, timer_subscribe_int
+      sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id)
+    > sys_irqsetpolicy(0, 1, addr: 0x85d1474 [0])
+    < sys_irqsetpolicy(0, 1, addr: 0x85d1474 [12]) -> (ret: 0)
+  < timer_subscribe_int(addr: 0xeffff75e [0]) -> (ret: 0)
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x04 = 0b00000100])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x04 = 0b00000100])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfd = 0b11111101])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x04 = 0b00000100])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfd = 0b11111101])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x04 = 0b00000100])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfd = 0b11111101])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x05 = 0b00000101])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfc = 0b11111100])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x04 = 0b00000100])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x08 = 0b00001000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x00 = 0b00000000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfd = 0b11111101])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x03 = 0b00000011])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfd = 0b11111101])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x02 = 0b00000010])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xfe = 0b11111110])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x28 = 0b00101000])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000001000000000001]>)
+  @main_functions.c:59, mouse_manager
+    mouse_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x3d = 0b00111101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0xff = 0b11111111])
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @main_functions.c:49, keyboard_manager
+    kbc_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x1d = 0b00011101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x01 = 0b00000001])
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 30"
+  @proj.c:120, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main_functions.c:37, timer_manager
+    timer_int_handler()
+  @main_functions.c:49, keyboard_manager
+    kbc_ih()
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x64, addr: 0xeffff610)
+    < sys_inb(0x64, addr: 0xeffff610 [0x1d = 0b00011101])
+    @utils.c:23, util_sys_inb
+      sys_inb(port, &var1)
+    > sys_inb(0x60, addr: 0xeffff610)
+    < sys_inb(0x60, addr: 0xeffff610 [0x81 = 0b10000001])
+  @proj.c:156, proj_main_loop
+    printf("Time: %d\n", (int)t1)
+    "Time: 20"
+  @keyboard.c:64, kbd_unsubscribe_int
+    sys_irqrmpolicy(&hook_id_kbd)
+  > sys_irqrmpolicy(addr: 0x85d145c [10])
+  < sys_irqrmpolicy(addr: 0x85d145c [10]) -> (ret: 0)
+  @mouse.c:58, mouse_unsubscribe_int
+    sys_irqrmpolicy(&hook_id_mouse)
+  > sys_irqrmpolicy(addr: 0x85d1464 [11])
+  < sys_irqrmpolicy(addr: 0x85d1464 [11]) -> (ret: 0)
+  @proj.c:175, proj_main_loop
+    timer_unsubscribe_int()
+    @timer.c:74, timer_unsubscribe_int
+      sys_irqrmpolicy(&hook_id)
+    > sys_irqrmpolicy(addr: 0x85d1474 [12])
+    < sys_irqrmpolicy(addr: 0x85d1474 [12]) -> (ret: 0)
+  @utils.c:23, util_sys_inb
+    sys_inb(port, &var1)
+  > sys_inb(0x64, addr: 0xeffff6ac)
+  < sys_inb(0x64, addr: 0xeffff6ac [0x3d = 0b00111101])
+  @mouse.c:96, send_command
+    sys_outb(KBC_CMD_REG, command)
+  > sys_outb(0x64, 0xd4 = 0b11010100)
+  @utils.c:23, util_sys_inb
+    sys_inb(port, &var1)
+  > sys_inb(0x64, addr: 0xeffff6ac)
+  < sys_inb(0x64, addr: 0xeffff6ac [0x3d = 0b00111101])
+  @mouse.c:114, write_argument
+    sys_outb(OUT_BUF, argument)
+  > sys_outb(0x60, 0xf5 = 0b11110101)
+  @utils.c:23, util_sys_inb
+    sys_inb(port, &var1)
+  > sys_inb(0x60, addr: 0xeffff6ac)
+  < sys_inb(0x60, addr: 0xeffff6ac [0x28 = 0b00101000])
+  @proj.c:180, proj_main_loop
+    vg_exit()
+  < vg_exit() -> (ret: 0)
+< proj_main_loop(0, [NULL]) -> (ret: 0)

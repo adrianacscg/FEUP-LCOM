@@ -12,7 +12,7 @@ int counter;
 
 
 /*interrupt handler*/
-int read_kbd() {
+void(kbc_ih)() {
   uint8_t stat;
   uint8_t data;
 
@@ -28,10 +28,18 @@ int read_kbd() {
 #ifdef LAB3
       counter++;
 #endif
-      return 0;
+      if (two_byte_scan) {
+        scancode[1] = data;
+        two_byte_scan = false;
+      }
+      else {
+        scancode[0] = data;
+        if (data == TWO_BYTE_CODE) {
+          two_byte_scan = true;
+        }
+      }
     }
   }
-  return 1;
 }
 
 //define if it's a break or make code for the print function
