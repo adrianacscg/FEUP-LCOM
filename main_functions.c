@@ -34,6 +34,8 @@ extern enum food_bar food_barra;
 extern enum play_bar play_barra;
 extern enum counter counter_barra;
 
+extern xpm_image_t minigame_sky, cloud;
+
 int timer_manager()
 {
   xpm_image_t character;
@@ -95,8 +97,11 @@ int timer_manager()
 
     if(mini_game)
     {
-      use_xpm(&day, 0, 0);
       use_xpm(&counter, 138, 216);
+      /*THINGS I ADDED - para ser mais facil encontrar/corrigir */
+      use_xpm(&minigame_sky, 0, 0);
+      //use_xpm(&cloud, 138, 100);  //still testing the x and y values
+      
 
     }
        

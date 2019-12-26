@@ -61,6 +61,8 @@
 #include "xpms/counter_13.xpm"
 #include "xpms/counter_14.xpm"
 #include "xpms/counter_15.xpm"
+#include "xpms/minigame_sky_background_with_border.xpm"
+#include "xpms/minigame_cloud_platform.xpm"
 
 
 //GLOBAL VARIABLES
@@ -69,7 +71,7 @@ xpm_image_t rudolph_meio_baixo, rudolph_meio_cima, rudolph_esquerda_cima, rudolp
 xpm_image_t chicken_leg;
 xpm_image_t sleep_4, sleep_3, sleep_2, sleep_1, food_4, food_3, food_2, food_1, play_4, play_3, play_2, play_1;
 xpm_image_t counter_00, counter_01, counter_02, counter_03, counter_04, counter_05, counter_06, counter_07, counter_08, counter_09, counter_10, counter_11, counter_12, counter_13, counter_14, counter_15;
-
+xpm_image_t minigame_sky, cloud;
 extern int timer_counter;
 int timer_counter_sleep = 0, timer_counter_food = 0, timer_counter_play = 0;
 
@@ -88,6 +90,7 @@ int loading_xpms()
   uint8_t *chicken_leg_map;
   uint8_t *sleep_4_map, *sleep_3_map, *sleep_2_map, *sleep_1_map, *food_4_map, *food_3_map, *food_2_map, *food_1_map, *play_4_map, *play_3_map, *play_2_map, *play_1_map;
   uint8_t *counter_00_map, *counter_01_map, *counter_02_map, *counter_03_map, *counter_04_map, *counter_05_map, *counter_06_map, *counter_07_map, *counter_08_map, *counter_09_map, *counter_10_map, *counter_11_map, *counter_12_map, *counter_13_map, *counter_14_map, *counter_15_map;
+  uint8_t *minigame_sky_map, *cloud_map;
 
   load_back = xpm_load(loading_xpm, XPM_5_6_5, &load_bc);
   choose_char = xpm_load(choose_char_2_xpm, XPM_5_6_5, &choose_character);
@@ -138,6 +141,11 @@ int loading_xpms()
   counter_13_map = xpm_load(counter_13_xpm, XPM_5_6_5, &counter_13);
   counter_14_map = xpm_load(counter_14_xpm, XPM_5_6_5, &counter_14);
   counter_15_map = xpm_load(counter_15_xpm, XPM_5_6_5, &counter_15);
+
+  /*THINGS I ADDED - para ser mais facil encontrar/corrigir */
+  minigame_sky_map = xpm_load( minigame_sky_background_with_border_xpm, XPM_5_6_5, &minigame_sky);
+  cloud_map = xpm_load(minigame_cloud_platform_xpm, XPM_5_6_5, &cloud);
+  
 
 
   return 0;
