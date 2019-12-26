@@ -1,5 +1,5 @@
 /* XPM */
-static char * C:\Users\Adriana\Desktop\FEUP\My Folders\2ano\1semestre\LCOM\MINIX_LCOM\shared\proj\xpms\minigame_sky_background_with_border_xpm[] = {
+static xpm_row_t const minigame_sky_background_with_border_xpm[] = {
 "1281 1022 11857 3",
 "   	c None",
 ".  	c #2B2B5A",

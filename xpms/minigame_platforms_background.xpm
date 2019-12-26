@@ -1,5 +1,5 @@
 /* XPM */
-static char * C:\Users\Adriana\Desktop\FEUP\My Folders\2ano\1semestre\LCOM\MINIX_LCOM\shared\proj\xpms\minigame_platforms_background_xpm[] = {
+static xpm_row_t const minigame_platforms_background_xpm[] = {
 "1281 1022 14621 3",
 "   	c None",
 ".  	c #2B2B5A",

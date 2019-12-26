@@ -1,5 +1,5 @@
 /* XPM */
-static char * C:\Users\Adriana\Desktop\FEUP\My Folders\2ano\1semestre\LCOM\MINIX_LCOM\shared\proj\xpms\minigame_cloud_platform_xpm[] = {
+static xpm_row_t const minigame_cloud_platform_xpm[] = {
 "1281 1022 724 2",
 "  	c None",
 ". 	c #000000",
