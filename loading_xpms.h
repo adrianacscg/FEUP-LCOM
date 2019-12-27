@@ -9,6 +9,7 @@ xpm_image_t decide_sleep_bar(enum sleep_bar sb);
 xpm_image_t decide_play_bar(enum play_bar pb);
 xpm_image_t decide_food_bar(enum food_bar fb);
 xpm_image_t decide_time(enum counter c);
+int decide_next_cloud(int jump_counter, enum cloud_position proxima_nuvem);
 
 
 #endif

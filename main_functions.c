@@ -34,13 +34,19 @@ extern enum food_bar food_barra;
 extern enum play_bar play_barra;
 extern enum counter counter_barra;
 
-extern xpm_image_t minigame_sky, cloud, mg_menu;
+extern enum cloud_position proxima_nuvem;
+
+
+
+extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud;
+
 
 int timer_manager()
 {
   xpm_image_t character;
   xpm_image_t sleep_bar, food_bar, play_bar;
   xpm_image_t counter;
+  
 
   timer_int_handler();
 
@@ -98,14 +104,13 @@ int timer_manager()
     if(mini_game && ! mg_enter)
     {
       
-      /*THINGS I ADDED - para ser mais facil encontrar/corrigir */
       use_xpm(&mg_menu, 0, 0);
-      //use_xpm(&cloud, 138, 100);  //still testing the x and y values
+      
     }
     if(mini_game && mg_enter)
     {
-      use_xpm(&minigame_sky, 0, 0);
-      use_xpm(&counter, 138, 216);
+      minigame();
+      
     }
        
 
@@ -114,6 +119,161 @@ int timer_manager()
   }
   return 0;
 }
+
+/*MINIGAME*/
+
+int minigame(){
+  
+  int jump_counter = 0;
+  use_xpm(&minigame_sky, 0, 0);
+  use_xpm(&counter, 138, 216);
+
+  
+
+  while(counter != C00){
+    
+    proxima_nuvem = draw_clouds(jump_counter);
+
+    jump_counter = decide_next_cloud(jump_counter, proxima_nuvem);
+
+    if(jump_counter < 0) {
+      use_xpm(&mg_menu, 0, 0); //if you die; need to change xpm to gameover pic
+      //the value of jump_counter will be your score but negative, need to use abs to get the positive value and display it
+      counter = C00;
+    }
+
+    
+  }
+  return 0;
+  
+}
+
+
+/*******************/
+
+
+
+enum cloud_position draw_clouds(int jump_counter){
+
+  extern enum cloud_position prox_nuvem;
+
+  switch(jump_counter){
+    case 0:
+      prox_nuvem = center;
+      use_xpm(&rudolph_cloud, 250, 800); 
+      use_xpm(&cloud, 640, 650);
+      use_xpm(&cloud, 1030, 500);
+      use_xpm(&cloud, 640, 350);
+      use_xpm(&cloud, 250, 200);
+
+      break;
+
+    case 1:
+      prox_nuvem = right;
+      use_xpm(&rudolph_cloud, 250, 800); 
+      use_xpm(&cloud, 640, 650);
+      use_xpm(&cloud, 1030, 500);
+      use_xpm(&cloud, 640, 350);
+      use_xpm(&cloud, 250, 200);
+      break;
+
+    case 2:
+      prox_nuvem = center;
+    break;
+
+    case 3:
+    prox_nuvem = left;
+    break;
+
+    case 4:
+    prox_nuvem = center;
+    
+    break;
+
+    case 5:
+    prox_nuvem = left;
+    break;
+
+    case 6:
+    prox_nuvem = center;
+    break;
+
+    case 7:
+    prox_nuvem = right;
+    break;
+
+    case 8:
+    prox_nuvem = center;
+    
+    break;
+
+    case 9:
+    prox_nuvem = right;
+    break;
+
+    case 10:
+    prox_nuvem = center;
+    break;
+
+    case 11:
+    prox_nuvem = left;
+    break;
+
+    case 12:
+    prox_nuvem = center;
+    
+    break;
+
+    case 13:
+    prox_nuvem = right;
+    break;
+
+    case 14:
+    prox_nuvem = center;
+    break;
+
+    case 15:
+    prox_nuvem = left;
+    break;
+
+    case 16:
+    prox_nuvem = center;
+    
+    break;
+
+    case 17:
+    prox_nuvem = left;
+    break;
+
+    case 18:
+    prox_nuvem = center;
+    break;
+
+    case 19:
+    prox_nuvem = right;
+    break;
+
+    case 20:
+    prox_nuvem = center;
+    break;
+
+    case 21:
+    prox_nuvem = right;
+    break;
+
+    case 22:
+    prox_nuvem = center;
+    break;
+
+    case 23:
+    prox_nuvem = left;
+    break;
+  }
+
+  return prox_nuvem;
+
+}
+
 
 int keyboard_manager()
 {

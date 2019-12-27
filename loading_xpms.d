@@ -61,5 +61,5 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   xpms/counter_06.xpm xpms/counter_07.xpm xpms/counter_08.xpm \
   xpms/counter_09.xpm xpms/counter_10.xpm xpms/counter_11.xpm \
   xpms/counter_12.xpm xpms/counter_13.xpm xpms/counter_14.xpm \
-  xpms/counter_15.xpm xpms/minigame_sky_background_with_border.xpm \
-  xpms/minigame_cloud_platform.xpm
+  xpms/counter_15.xpm xpms/bg_enter.xpm xpms/bg_mg.xpm \
+  xpms/MINIGAME_CLOUD.xpm xpms/MINIGAME_RUDOLPH_CLOUD.xpm

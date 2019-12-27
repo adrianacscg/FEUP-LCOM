@@ -24,5 +24,8 @@
 #define TWO_BYTE_CODE           0xe0    //To test when a code is two bytes long
 #define DELAY_US                20000   //delay used in the delay function
 
+#define RIGHT_ARROW_BREAK_CODE 0xCD
+#define LEFT_ARROW_BREAK_CODE 0xCB
+
 
 #endif

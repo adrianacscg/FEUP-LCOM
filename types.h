@@ -41,4 +41,10 @@ enum counter{
   C15
 };
 
+enum cloud_position{
+  left,
+  center,
+  right
+};
+
 #endif

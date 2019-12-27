@@ -4,5 +4,7 @@
 int timer_manager();
 int keyboard_manager();
 int mouse_manager();
+int minigame();
+enum cloud_position draw_clouds(int jump_counter);
 
 #endif
