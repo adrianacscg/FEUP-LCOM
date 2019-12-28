@@ -22,7 +22,7 @@ enum play_bar{
   PLAY_1
 };
 
-enum counter{
+enum counter_bar{
   C00,
   C01,
   C02,
@@ -45,6 +45,10 @@ enum cloud_position{
   left,
   center,
   right
+};
+
+struct cloud_event{
+  enum cloud_position pos;
 };
 
 #endif

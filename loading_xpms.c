@@ -80,10 +80,10 @@ int timer_counter_sleep = 0, timer_counter_food = 0, timer_counter_play = 0;
 enum sleep_bar sleep_barra;
 enum play_bar play_barra;
 enum food_bar food_barra;
-enum counter counter_barra;
+enum counter_bar counter_barra;
 
 extern bool sleeping, ate, mini_game;
-
+extern uint8_t scancode[2];
 
 
 int loading_xpms()
@@ -408,7 +408,7 @@ xpm_image_t decide_food_bar(enum food_bar fb)
   return food_1;
 }
 
-xpm_image_t decide_time(enum counter c)
+xpm_image_t decide_time(enum counter_bar c)
 {
   if(mini_game)
   {
@@ -563,41 +563,4 @@ xpm_image_t decide_time(enum counter c)
   
 }
 
-extern enum cloud_position nuvem = left;;
-
-int decide_next_cloud(int jump_counter, enum cloud_position proxima_nuvem){
-
-
-  if(nuvem == left && proxima_nuvem == center && scancode[0] == RIGHT_ARROW_BREAK_CODE){
-    jump_counter++;
-    nuvem = center;
-    return jump_counter;
-
-  }
-
-  if(nuvem == right && proxima_nuvem == center && scancode[0] == LEFT_ARROW_BREAK_CODE){
-    jump_counter++;
-    nuvem = center;
-    return jump_counter;
-  }
-
-  if(nuvem == center && proxima_nuvem == left && scancode[0] == LEFT_ARROW_BREAK_CODE){
-    jump_counter++;
-    nuvem = left;
-    return jump_counter;
-  }
-
-  if(nuvem == center && proxima_nuvem == right && scancode[0] == RIGHT_ARROW_BREAK_CODE){
-    jump_counter++;
-    nuvem = right;
-    return jump_counter;
-  }
-
-  else
-  {
-    return -jump_counter;
-  }
-  
-
-}
 
