@@ -23,24 +23,22 @@ extern struct packet pack;
 extern int byte_no;
 extern unsigned int timer_counter;
 extern uint16_t pos_x, pos_y;
-extern bool loading, choose, menu, eat, sleeping, mini_game, eating_action, lobby, ate, mg_enter;
+extern bool loading, choose, menu, eat, sleeping, mini_game, eating_action, lobby, ate, mg_enter, lost;
 extern uint16_t xres, yres;
 extern xpm_image_t load_bc, choose_character, cursor, border, not_implemented, day, night;
 extern xpm_image_t rudolph_meio_baixo, rudolph_meio_cima, rudolph_esquerda_cima, rudolph_esquerda_baixo, rudolph_direita_cima, rudolph_direita_baixo;
 extern xpm_image_t chicken_leg;
+extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud;
 
 extern enum sleep_bar sleep_barra;
 extern enum food_bar food_barra;
 extern enum play_bar play_barra;
+
 extern enum counter_bar counter_barra;
-
-struct cloud_event nuvem;
-
-
-extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud;
-
+static enum cloud_position nuvem = left;
+enum cloud_position proxima_nuvem;
 int jump_counter = 0;
-struct cloud_event proxima_nuvem;
+
 
 int timer_manager()
 {
@@ -54,11 +52,11 @@ int timer_manager()
   {
     if(lobby)
     {
+      counter = decide_time(counter_barra);
       character = decide_rudolph(pos_x, pos_y);
       sleep_bar = decide_sleep_bar(sleep_barra);
       food_bar = decide_food_bar(food_barra);
       play_bar = decide_play_bar(play_barra);
-      counter = decide_time(counter_barra);
     }
 
     clean_screen_and_draw();
@@ -73,18 +71,18 @@ int timer_manager()
     {
       use_xpm(&day, 0, 0);
       use_xpm(&character, CHAR_X, CHAR_Y);
-      use_xpm(&sleep_bar,850, 120);
-      use_xpm(&food_bar,850, 200);
-      use_xpm(&play_bar,850, 280);
+      use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
+      use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
+      use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
     }  
     if(eat)
     {
       use_xpm(&day, 0, 0);
       use_xpm(&character, CHAR_X, CHAR_Y); 
       use_xpm(&chicken_leg, FOOD_POS_X, FOOD_POS_Y);
-      use_xpm(&sleep_bar,850, 120);
-      use_xpm(&food_bar,850, 200);
-      use_xpm(&play_bar,850, 280);
+      use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
+      use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
+      use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
 
       if(eating_action)
       {
@@ -96,29 +94,30 @@ int timer_manager()
     {
       use_xpm(&night, 0, 0);
       use_xpm(&character, CHAR_X, CHAR_Y); 
-      use_xpm(&sleep_bar,850, 120);
-      use_xpm(&food_bar,850, 200);
-      use_xpm(&play_bar,850, 280); 
+      use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
+      use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
+      use_xpm(&play_bar,X_BARS, Y_PLAY_BAR); 
     }    
 
     if(mini_game)
     {
-      if(!mg_enter)
+      if(lost)
+      {
+        use_xpm(&not_implemented, 0, 0);
+      }
+      else if(!mg_enter)
         use_xpm(&mg_menu, 0, 0);
-      else
+      else if(mg_enter)
       {
         use_xpm(&minigame_sky, 0, 0);
-        use_xpm(&counter, 138, 216);
-
-        while(counter_barra != C00){
-          
-          proxima_nuvem.pos = draw_clouds(jump_counter)->pos;
-
-          //jump_counter = decide_next_cloud(jump_counter, proxima_nuvem);
-
-          if(jump_counter < 0) {
-            use_xpm(&mg_menu, 0, 0); //if you die; need to change xpm to gameover pic
-            //the value of jump_counter will be your score but negative, need to use abs to get the positive value and display it
+        use_xpm(&counter, X_COUNTER, Y_COUNTER);
+        
+        if(counter_barra != C00)
+        {
+          draw_clouds(jump_counter);
+          if(lost) 
+          {
+            use_xpm(&mg_menu, 0, 0);
             counter_barra = C00;
           }
         }
@@ -133,123 +132,125 @@ int timer_manager()
 }
 
 
-struct cloud_event* draw_clouds(int jump_counter){
+void draw_clouds(int jump_counter){
 
   switch(jump_counter){
-    case 0:
-      use_xpm(&rudolph_cloud, 250, 800); 
-      use_xpm(&cloud, 640, 650);
-      use_xpm(&cloud, 1030, 500);
-      use_xpm(&cloud, 640, 350);
-      use_xpm(&cloud, 250, 200);
-      nuvem.pos = center;
+    case 0:      
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50); 
+      nuvem = left;
+      proxima_nuvem = center;
 
       break;
 
-    case 1:
-      
-      use_xpm(&rudolph_cloud, 250, 800); 
-      use_xpm(&cloud, 640, 650);
-      use_xpm(&cloud, 1030, 500);
-      use_xpm(&cloud, 640, 350);
-      use_xpm(&cloud, 250, 200);
-      nuvem.pos = right;
+    case 1:      
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50); 
+      nuvem = center;
+      proxima_nuvem = right;
       break;
 
     case 2:
-      nuvem.pos = center;
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50); 
+      nuvem = right;
+      proxima_nuvem = center;
     break;
 
     case 3:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 4:
-    nuvem.pos = center;
+    nuvem = center;
     
     break;
 
     case 5:
-    nuvem.pos = left;
+    nuvem = left;
     break;
 
     case 6:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 7:
-    nuvem.pos = right;
+    nuvem = right;
     break;
 
     case 8:
-    nuvem.pos = center;
+    nuvem = center;
     
     break;
 
     case 9:
-    nuvem.pos = right;
+    nuvem = right;
     break;
 
     case 10:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 11:
-    nuvem.pos = left;
+    nuvem = left;
     break;
 
     case 12:
-    nuvem.pos = center;
+    nuvem = center;
     
     break;
 
     case 13:
-    nuvem.pos = right;
+    nuvem = right;
     break;
 
     case 14:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 15:
-    nuvem.pos = left;
+    nuvem = left;
     break;
 
     case 16:
-    nuvem.pos = center;
+    nuvem = center;
     
     break;
 
     case 17:
-    nuvem.pos = left;
+    nuvem = left;
     break;
 
     case 18:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 19:
-    nuvem.pos = right;
+    nuvem = right;
     break;
 
     case 20:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 21:
-    nuvem.pos = right;
+    nuvem = right;
     break;
 
     case 22:
-    nuvem.pos = center;
+    nuvem = center;
     break;
 
     case 23:
-    nuvem.pos = left;
+    nuvem = left;
     break;
   }
-
-  return &nuvem;
 
 }
 
@@ -270,39 +271,69 @@ int keyboard_manager()
     mini_game = false;
     mg_enter = false;
     counter_barra = C15;
+    lost = false;
+    jump_counter = 0;
   }
   if(mini_game && scancode[0] == ENTER_BREAK_CODE)
   {
     mg_enter = true;
+    lost = false;
   }
 
   if(mini_game && mg_enter)
   {
-    if(nuvem.pos == left && proxima_nuvem.pos == center && scancode[0] == RIGHT_ARROW_BREAK_CODE){
+    if(nuvem == left && proxima_nuvem == center && scancode[0] == D_BREAK_CODE){
       jump_counter++;
-      nuvem.pos = center;
-
+      nuvem = center;
     }
 
-    if(nuvem.pos == right && proxima_nuvem.pos == center && scancode[0] == LEFT_ARROW_BREAK_CODE){
-      jump_counter++;
-      nuvem.pos = center;
-    }
-
-    if(nuvem.pos == center && proxima_nuvem.pos == left && scancode[0] == LEFT_ARROW_BREAK_CODE){
-      jump_counter++;
-      nuvem.pos = left;
-    }
-
-    if(nuvem.pos == center && proxima_nuvem.pos == right && scancode[0] == RIGHT_ARROW_BREAK_CODE){
-      jump_counter++;
-      nuvem.pos = right;
-    }
-
-    else
+    else if(nuvem == left && proxima_nuvem == center && scancode[0] == A_BREAK_CODE)
     {
-      jump_counter--;
+      lost = true;
+      mg_enter = false;
+      counter_barra = C15;
+      jump_counter = 0;
+    }     
+
+    else if(nuvem == right && proxima_nuvem == center && scancode[0] == A_BREAK_CODE){
+      jump_counter++;
+      nuvem = center;
     }
+
+    else if(nuvem == right && proxima_nuvem == center && scancode[0] == D_BREAK_CODE)
+    {
+      lost = true;
+      mg_enter = false;
+      counter_barra = C15;
+      jump_counter = 0;
+    }    
+
+    else if(nuvem == center && proxima_nuvem == left && scancode[0] == A_BREAK_CODE){
+      jump_counter++;
+      nuvem = left;
+    }
+
+    else if(nuvem == center && proxima_nuvem == left && scancode[0] == D_BREAK_CODE)
+    {
+      lost = true;
+      mg_enter = false;
+      counter_barra = C15;
+      jump_counter = 0;
+    }    
+
+    else if(nuvem == center && proxima_nuvem == right && scancode[0] == D_BREAK_CODE){
+      jump_counter++;
+      nuvem = right;
+    }
+
+    else if(nuvem == center && proxima_nuvem == right && scancode[0] == A_BREAK_CODE)
+    {
+      lost = true;
+      mg_enter = false;
+      counter_barra = C15;
+      jump_counter = 0;
+    }    
+
   }
   return 0;
 }
@@ -320,7 +351,7 @@ int mouse_manager()
     pos_y = max(0, pos_y - pack.delta_y);
     pos_y = min(pos_y, yres -1);   
 
-    if(choose && pack.lb == 1 && (pos_x >= 428 && pos_x <= 852) && (pos_y >= 302 && pos_y <= 722))
+    if(choose && pack.lb == 1 && (pos_x >= CHOOSE_RUDOLPH_MIN_X && pos_x <= CHOOSE_RUDOLPH_MAX_X) && (pos_y >= CHOOSE_RUDOLPH_MIN_Y && pos_y <= CHOOSE_RUDOLPH_MAX_Y))
     {
       lobby = true;
       choose = false;
@@ -330,31 +361,37 @@ int mouse_manager()
       play_barra = PLAY_4;
       counter_barra = C15;
     }
-    else if(menu && pack.lb == 1 && (pos_x >= 322 && pos_x <= 415) && (pos_y >= 900 && pos_y <= 1000))
+    else if(pack.lb == 1 && (pos_x >= SLEEP_MIN_X && pos_x <= SLEEP_MAX_X) && (pos_y >= SLEEP_MIN_Y && pos_y <= SLEEP_MAX_Y))
     {
       sleeping = true;
+      eat = false;
+      mini_game = false;
       menu = false;
     }
-    else if(menu && pack.lb == 1 && (pos_x >= 600 && pos_x <= 700) && (pos_y >= 900 && pos_y <= 1000))
+    else if(pack.lb == 1 && (pos_x >= FOOD_MIN_X && pos_x <= FOOD_MAX_X) && (pos_y >= FOOD_MIN_Y && pos_y <= FOOD_MAX_Y))
     {
       eat = true;
+      sleeping = false;
+      mini_game = false;
       menu = false;
     }
-    else if(menu && pack.lb == 1 && (pos_x >= 870 && pos_x <= 970) && (pos_y >= 900 && pos_y <= 1000))
+    else if(pack.lb == 1 && (pos_x >= PLAY_MIN_X && pos_x <= PLAY_MAX_X) && (pos_y >= PLAY_MIN_Y && pos_y <= PLAY_MAX_Y))
     {
       mini_game = true;
+      eat = false;
+      sleeping = false;
       menu = false;
     }
-    else if(eat && pack.lb == 1 && (pos_x >= FOOD_POS_X && pos_y >= FOOD_POS_Y && pos_x < (FOOD_POS_X+120) && pos_y < (FOOD_POS_Y+120)))
+    else if(eat && pack.lb == 1 && (pos_x >= FOOD_POS_X && pos_y >= FOOD_POS_Y && pos_x < (FOOD_POS_X+100) && pos_y < (FOOD_POS_Y+100)))
     {
       eating_action = true;
     }
-    else if(eating_action && pack.lb == 0 && (pos_x >= CHAR_X && pos_y >= CHAR_Y && pos_x < (CHAR_X+472) && pos_y < (CHAR_Y+472)))
+    else if(eating_action && pack.lb == 0 && (pos_x >= CHAR_X && pos_y >= CHAR_Y && pos_x < (CHAR_X+320) && pos_y < (CHAR_Y+320)))
     {
       eating_action = false;
       ate = true;
     }
-    else if(eating_action && pack.lb == 0 && !(pos_x >= CHAR_X && pos_y >= CHAR_Y && pos_x < (CHAR_X+472) && pos_y < (CHAR_Y+472)))
+    else if(eating_action && pack.lb == 0 && !(pos_x >= CHAR_X && pos_y >= CHAR_Y && pos_x < (CHAR_X+320) && pos_y < (CHAR_Y+320)))
     {
       eating_action = false;
       ate = false;

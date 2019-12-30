@@ -18,7 +18,7 @@
 #include "types.h"
 
 /*XPMS*/
-#include "xpms/choose_char_2.xpm"
+#include "xpms/choose_char.xpm"
 #include "xpms/cursor.xpm"
 #include "xpms/loading.xpm"
 #include "xpms/border.xpm"
@@ -64,7 +64,7 @@
 #include "xpms/bg_enter.xpm"
 #include "xpms/bg_mg.xpm"
 #include "xpms/MINIGAME_CLOUD.xpm"
-#include "xpms/MINIGAME_RUDOLPH_CLOUD.xpm"
+#include "xpms/rudolph_minigame.xpm"
 
 
 //GLOBAL VARIABLES
@@ -82,7 +82,7 @@ enum play_bar play_barra;
 enum food_bar food_barra;
 enum counter_bar counter_barra;
 
-extern bool sleeping, ate, mini_game;
+extern bool sleeping, ate, mini_game, mg_enter;
 extern uint8_t scancode[2];
 
 
@@ -149,7 +149,7 @@ int loading_xpms()
   minigame_sky_map = xpm_load(bg_mg_xpm, XPM_5_6_5, &minigame_sky);
   cloud_map = xpm_load(MINIGAME_CLOUD_xpm, XPM_5_6_5, &cloud);
   minigame_menu_map = xpm_load(bg_enter_xpm, XPM_5_6_5, &mg_menu);
-  rudolph_on_cloud_map = xpm_load(MINIGAME_RUDOLPH_CLOUD_xpm, XPM_5_6_5, &rudolph_cloud);
+  rudolph_on_cloud_map = xpm_load(rudolph_minigame_xpm, XPM_5_6_5, &rudolph_cloud);
   
 
 
@@ -280,6 +280,37 @@ xpm_image_t decide_play_bar(enum play_bar pb)
   {
     timer_counter_play++;
   }
+
+  if(mg_enter)
+  {
+    if(timer_counter_play == 15)
+    {
+      timer_counter_play = 0;
+
+      switch(pb)
+      {
+        case PLAY_4:
+          play_barra = PLAY_4;
+          return play_4;
+
+        case PLAY_3:
+          play_barra = PLAY_4;
+          return play_4;
+
+        case PLAY_2:
+          play_barra = PLAY_3;
+          return play_3;
+
+        case PLAY_1:
+          play_barra = PLAY_2;
+          return play_2;
+
+        default:
+          break;
+      }
+    }
+  }
+
   if(timer_counter_play == 10)
   {
     timer_counter_play = 0;

@@ -6,6 +6,6 @@
 int timer_manager();
 int keyboard_manager();
 int mouse_manager();
-struct cloud_event* draw_clouds(int jump_counter);
+void draw_clouds(int jump_counter);
 
 #endif

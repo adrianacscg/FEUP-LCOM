@@ -47,8 +47,4 @@ enum cloud_position{
   right
 };
 
-struct cloud_event{
-  enum cloud_position pos;
-};
-
 #endif
