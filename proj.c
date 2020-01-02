@@ -18,6 +18,7 @@
 #include <macros_proj.h>
 #include "main_functions.h"
 #include "loading_xpms.h"
+#include "rtc.h"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)

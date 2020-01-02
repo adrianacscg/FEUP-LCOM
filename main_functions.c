@@ -16,6 +16,7 @@
 #include "loading_xpms.h"
 #include "macros_proj.h"
 #include "types.h"
+#include "rtc.h"
 
 extern uint8_t scancode[2];
 extern bool two_byte_scan;
@@ -140,8 +141,7 @@ int timer_manager()
             use_xpm(&s1, 646, 309);
             use_xpm(&s2, 571, 309);
             counter_barra = C00;
-            score_counter += jump_counter;/*
-            //need to show the score_counter on the screen*/
+            score_counter += jump_counter;
           }
         }
         else if (counter_barra == C00)

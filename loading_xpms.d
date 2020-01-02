@@ -62,4 +62,13 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   xpms/counter_09.xpm xpms/counter_10.xpm xpms/counter_11.xpm \
   xpms/counter_12.xpm xpms/counter_13.xpm xpms/counter_14.xpm \
   xpms/counter_15.xpm xpms/bg_enter.xpm xpms/bg_mg.xpm \
-  xpms/MINIGAME_CLOUD.xpm xpms/rudolph_minigame.xpm xpms/bg_mg_score.xpm
+  xpms/MINIGAME_CLOUD.xpm xpms/rudolph_minigame.xpm xpms/score.xpm \
+  xpms/score_ingame.xpm xpms/number_1.xpm xpms/number_2.xpm \
+  xpms/number_3.xpm xpms/number_4.xpm xpms/number_5.xpm \
+  xpms/number_6.xpm xpms/number_7.xpm xpms/number_8.xpm \
+  xpms/number_9.xpm xpms/number_0.xpm xpms/number_1_ingame.xpm \
+  xpms/number_2_ingame.xpm xpms/number_3_ingame.xpm \
+  xpms/number_4_ingame.xpm xpms/number_5_ingame.xpm \
+  xpms/number_6_ingame.xpm xpms/number_7_ingame.xpm \
+  xpms/number_8_ingame.xpm xpms/number_9_ingame.xpm \
+  xpms/number_0_ingame.xpm

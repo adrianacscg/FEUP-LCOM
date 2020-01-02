@@ -55,4 +55,19 @@
 #define CLOUD_RIGHT           637
 #define CLOUD_TOP             231
 
+/*************RTC****************/
+
+#define RTC_IRQ                  8 //The RTC has only one IRQ line, which is connected to line IRQ0 of PIC2, i.e. IRQ8
+#define RTC_ADDR_REG            0x70 //must be loaded with the address of the RTC register to be accessed
+#define RTC_DATA_REG            0x71 //used to transfer the data to/from the RTC's register accessed
+
+#define REG_A                   0x0a
+#define REG_B                   0x0b
+#define REG_C                   0x0c
+#define REG_D                   0x0d
+
+#define RTC_HOURS               0x04
+#define RTC_MINS                0x02
+#define RTC_SECS                0x00
+
 #endif
