@@ -47,4 +47,30 @@ enum cloud_position{
   right
 };
 
+enum score_bar_1{
+  S01,
+  S02,
+  S03,
+  S04,
+  S05,
+  S06,
+  S07,
+  S08,
+  S09,
+  S00_1
+};
+
+enum score_bar_2{
+  S10,
+  S20,
+  S30,
+  S40,
+  S50,
+  S60,
+  S70,
+  S80,
+  S90,
+  S00_2
+};
+
 #endif

@@ -51,7 +51,7 @@ int pos_x = 640, pos_y = 512;
 extern int hook_id_mouse;
 
 /*BOOLS - a mudar para enum*/
-bool loading = true, choose = false, menu = false, eat = false, sleeping = false, mini_game = false, eating_action = false, lobby = false, ate = false, mg_enter = false, lost = false;
+bool loading = true, choose = false, menu = false, eat = false, sleeping = false, mini_game = false, eating_action = false, lobby = false, ate = false, mg_enter = false, lost = false, start_again = false;
 
 int(proj_main_loop)(int argc, char *argv[]) {
   

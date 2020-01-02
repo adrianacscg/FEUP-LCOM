@@ -23,22 +23,23 @@ extern struct packet pack;
 extern int byte_no;
 extern unsigned int timer_counter;
 extern uint16_t pos_x, pos_y;
-extern bool loading, choose, menu, eat, sleeping, mini_game, eating_action, lobby, ate, mg_enter, lost;
+extern bool loading, choose, menu, eat, sleeping, mini_game, eating_action, lobby, ate, mg_enter, lost, start_again;
 extern uint16_t xres, yres;
 extern xpm_image_t load_bc, choose_character, cursor, border, not_implemented, day, night;
 extern xpm_image_t rudolph_meio_baixo, rudolph_meio_cima, rudolph_esquerda_cima, rudolph_esquerda_baixo, rudolph_direita_cima, rudolph_direita_baixo;
 extern xpm_image_t chicken_leg;
-extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, minigame_score_menu;
+extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, score, score_ingame;
+extern xpm_image_t n1, n2, n3, n4, n5, n6, n7, n8, n9, n0;
+extern xpm_image_t n1g, n2g, n3g, n4g, n5g, n6g, n7g, n8g, n9g, n0g;
 
 extern enum sleep_bar sleep_barra;
 extern enum food_bar food_barra;
 extern enum play_bar play_barra;
-
 extern enum counter_bar counter_barra;
 static enum cloud_position nuvem = left;
 enum cloud_position proxima_nuvem;
 int jump_counter = 0;
-int score_counter;
+int score_counter = 0;
 
 
 int timer_manager()
@@ -46,6 +47,10 @@ int timer_manager()
   xpm_image_t character;
   xpm_image_t sleep_bar, food_bar, play_bar;
   xpm_image_t counter;
+  xpm_image_t sg1;
+  xpm_image_t s1;
+  xpm_image_t sg2;
+  xpm_image_t s2;
 
   timer_int_handler();
 
@@ -102,9 +107,18 @@ int timer_manager()
 
     if(mini_game)
     {
+
+      sg1 = decide_score_1_game();
+      sg2 = decide_score_2_game();
+      s1 = decide_score_1();
+      s2 = decide_score_2();
+
       if(lost)
       {
-        use_xpm(&minigame_score_menu, 0, 0);
+        use_xpm(&minigame_sky, 0, 0);
+        use_xpm(&score, 117, 260);
+        use_xpm(&s1, 646, 330);
+        use_xpm(&s2, 571, 330);
       }
       else if(!mg_enter)
         use_xpm(&mg_menu, 0, 0);
@@ -112,22 +126,33 @@ int timer_manager()
       {
         use_xpm(&minigame_sky, 0, 0);
         use_xpm(&counter, X_COUNTER, Y_COUNTER);
+        use_xpm(&score_ingame, 70, 140);
+        use_xpm(&sg2, 215, 135);
+        use_xpm(&sg1, 240, 135);
         
         if(counter_barra != C00)
         {
           draw_clouds(jump_counter);
           if(lost) 
           {
-            use_xpm(&minigame_score_menu, 0, 0);
+            use_xpm(&minigame_sky, 0, 0);
+            use_xpm(&score, 117, 260);
+            use_xpm(&s1, 646, 309);
+            use_xpm(&s2, 571, 309);
             counter_barra = C00;
-            score_counter += jump_counter;
-            //need to show the score_counter on the screen
+            score_counter += jump_counter;/*
+            //need to show the score_counter on the screen*/
           }
         }
+        else if (counter_barra == C00)
+        {
+          lost = true;
+          start_again = true;
+        }
+        
       }
       
-    }
-       
+    } 
     use_xpm(&cursor, pos_x, pos_y);
     DBtoVM();
   }
@@ -359,10 +384,13 @@ void draw_clouds(int jump_counter){
       proxima_nuvem = left;
       break;
 
-    case 24:
-      
-      score_counter += jump_counter;  //adds the value of jumps to the score to keep track of it
-      jump_counter = 0;               //resets the jumps to zero to start the cloud loop again
+    case 24:     
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50);
+      nuvem = left;
+      proxima_nuvem = center;
       break;    
   }
 
@@ -392,65 +420,87 @@ int keyboard_manager()
   {
     mg_enter = true;
     lost = false;
+    score_counter = 0;
   }
+
 
   if(mini_game && mg_enter)
   {
+    if(start_again && scancode[0] == ENTER_BREAK_CODE)
+    {
+      mg_enter = false;
+      lost = false;
+      start_again = false;
+    }
+
     if(nuvem == left && proxima_nuvem == center && scancode[0] == D_BREAK_CODE){
       jump_counter++;
+      score_counter++;
       nuvem = center;
     }
 
     else if(nuvem == left && proxima_nuvem == center && scancode[0] == A_BREAK_CODE)
     {
       lost = true;
-      mg_enter = false;
+      start_again = true;
       counter_barra = C15;
-      score_counter += jump_counter;
       jump_counter = 0;
     }     
 
     else if(nuvem == right && proxima_nuvem == center && scancode[0] == A_BREAK_CODE){
       jump_counter++;
+      score_counter++;
       nuvem = center;
     }
 
     else if(nuvem == right && proxima_nuvem == center && scancode[0] == D_BREAK_CODE)
     {
       lost = true;
-      mg_enter = false;
+      start_again = true;
       counter_barra = C15;
-      score_counter += jump_counter;
       jump_counter = 0;
     }    
 
     else if(nuvem == center && proxima_nuvem == left && scancode[0] == A_BREAK_CODE){
       jump_counter++;
+      score_counter++;
       nuvem = left;
     }
 
     else if(nuvem == center && proxima_nuvem == left && scancode[0] == D_BREAK_CODE)
     {
       lost = true;
-      mg_enter = false;
+      start_again = true;
       counter_barra = C15;
-      score_counter += jump_counter;
       jump_counter = 0;
     }    
 
     else if(nuvem == center && proxima_nuvem == right && scancode[0] == D_BREAK_CODE){
       jump_counter++;
+      score_counter++;
       nuvem = right;
     }
 
     else if(nuvem == center && proxima_nuvem == right && scancode[0] == A_BREAK_CODE)
     {
       lost = true;
-      mg_enter = false;
+      start_again = true;
       counter_barra = C15;
-      score_counter += jump_counter;
       jump_counter = 0;
-    }    
+    }
+    if(jump_counter == 25 && scancode[0] == D_BREAK_CODE)
+    {
+      jump_counter= 1;
+      score_counter++;
+      nuvem = center;
+    }
+    if(jump_counter == 25 && scancode[0] == A_BREAK_CODE)
+    {
+      lost = true;
+      start_again = true;
+      counter_barra = C15;
+      jump_counter = 0;      
+    }
 
   }
   return 0;

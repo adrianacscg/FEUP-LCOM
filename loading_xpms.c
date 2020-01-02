@@ -65,7 +65,28 @@
 #include "xpms/bg_mg.xpm"
 #include "xpms/MINIGAME_CLOUD.xpm"
 #include "xpms/rudolph_minigame.xpm"
-#include "xpms/bg_mg_score.xpm"
+#include "xpms/score.xpm"
+#include "xpms/score_ingame.xpm"
+#include "xpms/number_1.xpm"
+#include "xpms/number_2.xpm"
+#include "xpms/number_3.xpm"
+#include "xpms/number_4.xpm"
+#include "xpms/number_5.xpm"
+#include "xpms/number_6.xpm"
+#include "xpms/number_7.xpm"
+#include "xpms/number_8.xpm"
+#include "xpms/number_9.xpm"
+#include "xpms/number_0.xpm"
+#include "xpms/number_1_ingame.xpm"
+#include "xpms/number_2_ingame.xpm"
+#include "xpms/number_3_ingame.xpm"
+#include "xpms/number_4_ingame.xpm"
+#include "xpms/number_5_ingame.xpm"
+#include "xpms/number_6_ingame.xpm"
+#include "xpms/number_7_ingame.xpm"
+#include "xpms/number_8_ingame.xpm"
+#include "xpms/number_9_ingame.xpm"
+#include "xpms/number_0_ingame.xpm"
 
 
 //GLOBAL VARIABLES
@@ -74,7 +95,10 @@ xpm_image_t rudolph_meio_baixo, rudolph_meio_cima, rudolph_esquerda_cima, rudolp
 xpm_image_t chicken_leg;
 xpm_image_t sleep_4, sleep_3, sleep_2, sleep_1, food_4, food_3, food_2, food_1, play_4, play_3, play_2, play_1;
 xpm_image_t counter_00, counter_01, counter_02, counter_03, counter_04, counter_05, counter_06, counter_07, counter_08, counter_09, counter_10, counter_11, counter_12, counter_13, counter_14, counter_15;
-xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, minigame_score_menu;
+xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, score, score_ingame;
+xpm_image_t n1, n2, n3, n4, n5, n6, n7, n8, n9, n0;
+xpm_image_t n1g, n2g, n3g, n4g, n5g, n6g, n7g, n8g, n9g, n0g;
+
 extern int timer_counter;
 int timer_counter_sleep = 0, timer_counter_food = 0, timer_counter_play = 0;
 
@@ -85,7 +109,7 @@ enum counter_bar counter_barra;
 
 extern bool sleeping, ate, mini_game, mg_enter;
 extern uint8_t scancode[2];
-
+extern int score_counter;
 
 int loading_xpms()
 {
@@ -94,7 +118,9 @@ int loading_xpms()
   uint8_t *chicken_leg_map;
   uint8_t *sleep_4_map, *sleep_3_map, *sleep_2_map, *sleep_1_map, *food_4_map, *food_3_map, *food_2_map, *food_1_map, *play_4_map, *play_3_map, *play_2_map, *play_1_map;
   uint8_t *counter_00_map, *counter_01_map, *counter_02_map, *counter_03_map, *counter_04_map, *counter_05_map, *counter_06_map, *counter_07_map, *counter_08_map, *counter_09_map, *counter_10_map, *counter_11_map, *counter_12_map, *counter_13_map, *counter_14_map, *counter_15_map;
-  uint8_t *minigame_sky_map, *cloud_map, *minigame_menu_map, *rudolph_on_cloud_map, *minigame_score_menu_map;
+  uint8_t *minigame_sky_map, *cloud_map, *minigame_menu_map, *rudolph_on_cloud_map, *score_map, *score_ingame_map;
+  uint8_t *n1_map, *n2_map, *n3_map, *n4_map, *n5_map, *n6_map, *n7_map, *n8_map, *n9_map, *n0_map;
+  uint8_t *n1g_map, *n2g_map, *n3g_map, *n4g_map, *n5g_map, *n6g_map, *n7g_map, *n8g_map, *n9g_map, *n0g_map;
 
   load_back = xpm_load(loading_xpm, XPM_5_6_5, &load_bc);
   choose_char = xpm_load(choose_char_2_xpm, XPM_5_6_5, &choose_character);
@@ -146,14 +172,33 @@ int loading_xpms()
   counter_14_map = xpm_load(counter_14_xpm, XPM_5_6_5, &counter_14);
   counter_15_map = xpm_load(counter_15_xpm, XPM_5_6_5, &counter_15);
 
-  /*THINGS I ADDED - para ser mais facil encontrar/corrigir */
   minigame_sky_map = xpm_load(bg_mg_xpm, XPM_5_6_5, &minigame_sky);
   cloud_map = xpm_load(MINIGAME_CLOUD_xpm, XPM_5_6_5, &cloud);
   minigame_menu_map = xpm_load(bg_enter_xpm, XPM_5_6_5, &mg_menu);
   rudolph_on_cloud_map = xpm_load(rudolph_minigame_xpm, XPM_5_6_5, &rudolph_cloud);
-  minigame_score_menu_map = xpm_load(bg_mg_score_xpm, XPM_5_6_5, &minigame_score_menu);
-  
+  score_map = xpm_load(score_xpm, XPM_5_6_5, &score);
+  score_ingame_map = xpm_load(score_ingame_xpm, XPM_5_6_5, &score_ingame);
 
+  n1_map = xpm_load(number_1_xpm, XPM_5_6_5, &n1);
+  n2_map = xpm_load(number_2_xpm, XPM_5_6_5, &n2);
+  n3_map = xpm_load(number_3_xpm, XPM_5_6_5, &n3);
+  n4_map = xpm_load(number_4_xpm, XPM_5_6_5, &n4);
+  n5_map = xpm_load(number_5_xpm, XPM_5_6_5, &n5);
+  n6_map = xpm_load(number_6_xpm, XPM_5_6_5, &n6);
+  n7_map = xpm_load(number_7_xpm, XPM_5_6_5, &n7);
+  n8_map = xpm_load(number_8_xpm, XPM_5_6_5, &n8);
+  n9_map = xpm_load(number_9_xpm, XPM_5_6_5, &n9);
+  n0_map = xpm_load(number_0_xpm, XPM_5_6_5, &n0);
+  n1g_map = xpm_load(number_1_ingame_xpm, XPM_5_6_5, &n1g);
+  n2g_map = xpm_load(number_2_ingame_xpm, XPM_5_6_5, &n2g);
+  n3g_map = xpm_load(number_3_ingame_xpm, XPM_5_6_5, &n3g);
+  n4g_map = xpm_load(number_4_ingame_xpm, XPM_5_6_5, &n4g);
+  n5g_map = xpm_load(number_5_ingame_xpm, XPM_5_6_5, &n5g);
+  n6g_map = xpm_load(number_6_ingame_xpm, XPM_5_6_5, &n6g);
+  n7g_map = xpm_load(number_7_ingame_xpm, XPM_5_6_5, &n7g);
+  n8g_map = xpm_load(number_8_ingame_xpm, XPM_5_6_5, &n8g);
+  n9g_map = xpm_load(number_9_ingame_xpm, XPM_5_6_5, &n9g);
+  n0g_map = xpm_load(number_0_ingame_xpm, XPM_5_6_5, &n0g);
 
   return 0;
 }
@@ -596,4 +641,171 @@ xpm_image_t decide_time(enum counter_bar c)
   
 }
 
+enum score_bar_2 event_2()
+{
+  if(score_counter / 10 == 0)
+    return S00_2;
+  else if(score_counter / 10 == 1)
+    return S10;
+  else if(score_counter / 10 == 2)
+    return S20;
+  else if(score_counter / 10 == 3)
+    return S30;
+  else if(score_counter / 10 == 4)
+    return S40;
+  else if(score_counter / 10 == 5)
+    return S50;
+  else if(score_counter / 10 == 6)
+    return S60;
+  else if(score_counter / 10 == 7)
+    return S70;
+  else if(score_counter / 10 == 8)
+    return S80;
+  else if(score_counter / 10 == 9)
+    return S90;
+  
+  return S00_2;
+}
+
+enum score_bar_1 event_1()
+{
+  if(score_counter % 10 == 0)
+    return S00_1;
+  else if(score_counter % 10 == 1)
+    return S01;
+  else if(score_counter % 10 == 2)
+    return S02;
+  else if(score_counter % 10 == 3)
+    return S03;
+  else if(score_counter % 10 == 4)
+    return S04;
+  else if(score_counter % 10 == 5)
+    return S05;
+  else if(score_counter % 10 == 6)
+    return S06;
+  else if(score_counter % 10 == 7)
+    return S07;
+  else if(score_counter % 10 == 8)
+    return S08;
+  else if(score_counter % 10 == 9)
+    return S09;
+  
+  return S00_1;
+}
+
+xpm_image_t decide_score_2_game()
+{
+  enum score_bar_2 s2 = event_2();
+  switch(s2)
+  {
+    case S00_2:
+      return n0g;
+    case S10:
+      return n1g;
+    case S20:
+      return n2g;
+    case S30:
+      return n3g;
+    case S40:
+      return n4g;
+    case S50:
+      return n5g;
+    case S60:
+      return n6g;
+    case S70:
+      return n7g;
+    case S80:
+      return n8g;
+    case S90:
+      return n9g;
+  }
+  return n0g;
+}
+
+xpm_image_t decide_score_2()
+{
+  enum score_bar_2 s2 = event_2();
+  switch(s2)
+  {
+    case S00_2:
+      return n0;
+    case S10:
+      return n1;
+    case S20:
+      return n2;
+    case S30:
+      return n3;
+    case S40:
+      return n4;
+    case S50:
+      return n5;
+    case S60:
+      return n6;
+    case S70:
+      return n7;
+    case S80:
+      return n8;
+    case S90:
+      return n9;
+  }
+  return n0;
+}
+
+xpm_image_t decide_score_1_game()
+{
+  enum score_bar_1 s1 = event_1();
+  switch(s1)
+  {
+    case S00_1:
+      return n0g;
+    case S01:
+      return n1g;
+    case S02:
+      return n2g;
+    case S03:
+      return n3g;
+    case S04:
+      return n4g;
+    case S05:
+      return n5g;
+    case S06:
+      return n6g;
+    case S07:
+      return n7g;
+    case S08:
+      return n8g;
+    case S09:
+      return n9g;
+  }
+  return n0g;
+}
+
+xpm_image_t decide_score_1()
+{
+  enum score_bar_1 s1 = event_1();  
+  switch(s1)
+  {
+    case S00_1:
+      return n0;
+    case S01:
+      return n1;
+    case S02:
+      return n2;
+    case S03:
+      return n3;
+    case S04:
+      return n4;
+    case S05:
+      return n5;
+    case S06:
+      return n6;
+    case S07:
+      return n7;
+    case S08:
+      return n8;
+    case S09:
+      return n9;
+  }
+  return n0;
+}
 
