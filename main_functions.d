@@ -46,5 +46,5 @@ main_functions.o: main_functions.c /usr/include/lcom/lcf.h \
   /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
   /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
   /usr/include/lcom/proj.h /usr/include/lcom/types.h main_functions.h \
-  video_card.h keyboard.h macros_kbd.h mouse.h ps2_mouse_macros.h \
-  myutils.h loading_xpms.h types.h macros_proj.h
+  types.h video_card.h keyboard.h macros_kbd.h mouse.h \
+  ps2_mouse_macros.h myutils.h loading_xpms.h macros_proj.h

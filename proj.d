@@ -47,4 +47,4 @@ proj.o: proj.c /usr/include/lcom/lcf.h /usr/include/stdbool.h \
   /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
   /usr/include/lcom/proj.h /usr/include/lcom/types.h video_card_macros.h \
   macros_kbd.h i8254.h ps2_mouse_macros.h video_card.h mouse.h timer.h \
-  keyboard.h macros_proj.h main_functions.h loading_xpms.h types.h
+  keyboard.h macros_proj.h main_functions.h types.h loading_xpms.h

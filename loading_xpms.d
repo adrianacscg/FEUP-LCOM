@@ -46,9 +46,9 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
   /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
   /usr/include/lcom/proj.h /usr/include/lcom/types.h main_functions.h \
-  video_card.h keyboard.h macros_kbd.h mouse.h ps2_mouse_macros.h \
-  myutils.h macros_proj.h timer.h types.h xpms/choose_char_2.xpm \
-  xpms/cursor.xpm xpms/loading.xpm xpms/border.xpm \
+  types.h video_card.h keyboard.h macros_kbd.h mouse.h \
+  ps2_mouse_macros.h myutils.h macros_proj.h timer.h \
+  xpms/choose_char.xpm xpms/cursor.xpm xpms/loading.xpm xpms/border.xpm \
   xpms/not_implemented.xpm xpms/day.xpm xpms/night.xpm xpms/rudolph.xpm \
   xpms/rudolph_baixo_direita.xpm xpms/rudolph_baixo_esquerda.xpm \
   xpms/rudolph_cima_direita.xpm xpms/rudolph_cima_esquerda.xpm \
@@ -62,4 +62,4 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   xpms/counter_09.xpm xpms/counter_10.xpm xpms/counter_11.xpm \
   xpms/counter_12.xpm xpms/counter_13.xpm xpms/counter_14.xpm \
   xpms/counter_15.xpm xpms/bg_enter.xpm xpms/bg_mg.xpm \
-  xpms/MINIGAME_CLOUD.xpm xpms/MINIGAME_RUDOLPH_CLOUD.xpm
+  xpms/MINIGAME_CLOUD.xpm xpms/rudolph_minigame.xpm xpms/bg_mg_score.xpm

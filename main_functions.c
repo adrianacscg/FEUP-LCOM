@@ -28,7 +28,7 @@ extern uint16_t xres, yres;
 extern xpm_image_t load_bc, choose_character, cursor, border, not_implemented, day, night;
 extern xpm_image_t rudolph_meio_baixo, rudolph_meio_cima, rudolph_esquerda_cima, rudolph_esquerda_baixo, rudolph_direita_cima, rudolph_direita_baixo;
 extern xpm_image_t chicken_leg;
-extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud;
+extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, minigame_score_menu;
 
 extern enum sleep_bar sleep_barra;
 extern enum food_bar food_barra;
@@ -38,6 +38,7 @@ extern enum counter_bar counter_barra;
 static enum cloud_position nuvem = left;
 enum cloud_position proxima_nuvem;
 int jump_counter = 0;
+int score_counter;
 
 
 int timer_manager()
@@ -103,7 +104,7 @@ int timer_manager()
     {
       if(lost)
       {
-        use_xpm(&not_implemented, 0, 0);
+        use_xpm(&minigame_score_menu, 0, 0);
       }
       else if(!mg_enter)
         use_xpm(&mg_menu, 0, 0);
@@ -117,8 +118,10 @@ int timer_manager()
           draw_clouds(jump_counter);
           if(lost) 
           {
-            use_xpm(&mg_menu, 0, 0);
+            use_xpm(&minigame_score_menu, 0, 0);
             counter_barra = C00;
+            score_counter += jump_counter;
+            //need to show the score_counter on the screen
           }
         }
       }
@@ -157,99 +160,210 @@ void draw_clouds(int jump_counter){
     case 2:
       use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
       use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
-      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_TOP);
       use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50); 
       nuvem = right;
       proxima_nuvem = center;
-    break;
+      break;
 
     case 3:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = left;
+      break;
 
     case 4:
-    nuvem = center;
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50);
+      nuvem = left;
+      proxima_nuvem = center;
     
-    break;
+      break;
 
     case 5:
-    nuvem = left;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = left;
+      break;
 
     case 6:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50);
+      nuvem = left;
+      proxima_nuvem = center;
+      break;
 
     case 7:
-    nuvem = right;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = right;
+      break;
 
     case 8:
-    nuvem = center;
-    
-    break;
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50);
+      nuvem = right;
+      proxima_nuvem = center;
+      
+      break;
 
     case 9:
-    nuvem = right;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = right;
+      break;
 
     case 10:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50);
+      nuvem = right;
+      proxima_nuvem = center;
+      break;
 
     case 11:
-    nuvem = left;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = left;
+      break;
 
     case 12:
-    nuvem = center;
-    
-    break;
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50);
+      nuvem = left;
+      proxima_nuvem = center;
+      
+      break;
 
     case 13:
-    nuvem = right;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = right;
+      break;
 
     case 14:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50);
+      nuvem = right;
+      proxima_nuvem = center;
+      break;
 
     case 15:
-    nuvem = left;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = left;
+      break;
 
     case 16:
-    nuvem = center;
-    
-    break;
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50);
+      nuvem = left;
+      proxima_nuvem = center;
+      
+      break;
 
     case 17:
-    nuvem = left;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = left;
+      break;
 
     case 18:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_LEFT+78, CLOUD_BOTTOM-50);
+      nuvem = left;
+      proxima_nuvem = center;
+      break;
 
     case 19:
-    nuvem = right;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = right;
+      break;
 
     case 20:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50);
+      nuvem = right;
+      proxima_nuvem = center;
+      break;
 
     case 21:
-    nuvem = right;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = right;
+      break;
 
     case 22:
-    nuvem = center;
-    break;
+      use_xpm(&cloud, CLOUD_RIGHT, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_RIGHT+78, CLOUD_BOTTOM-50);
+      nuvem = right;
+      proxima_nuvem = center;
+      break;
 
     case 23:
-    nuvem = left;
-    break;
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_BOTTOM);
+      use_xpm(&cloud, CLOUD_LEFT, CLOUD_MIDDLE);
+      use_xpm(&cloud, CLOUD_CENTER, CLOUD_TOP);
+      use_xpm(&rudolph_cloud, CLOUD_CENTER+78, CLOUD_BOTTOM-50);
+      nuvem = center;
+      proxima_nuvem = left;
+      break;
+
+    case 24:
+      
+      score_counter += jump_counter;  //adds the value of jumps to the score to keep track of it
+      jump_counter = 0;               //resets the jumps to zero to start the cloud loop again
+      break;    
   }
 
 }
@@ -292,6 +406,7 @@ int keyboard_manager()
       lost = true;
       mg_enter = false;
       counter_barra = C15;
+      score_counter += jump_counter;
       jump_counter = 0;
     }     
 
@@ -305,6 +420,7 @@ int keyboard_manager()
       lost = true;
       mg_enter = false;
       counter_barra = C15;
+      score_counter += jump_counter;
       jump_counter = 0;
     }    
 
@@ -318,6 +434,7 @@ int keyboard_manager()
       lost = true;
       mg_enter = false;
       counter_barra = C15;
+      score_counter += jump_counter;
       jump_counter = 0;
     }    
 
@@ -331,6 +448,7 @@ int keyboard_manager()
       lost = true;
       mg_enter = false;
       counter_barra = C15;
+      score_counter += jump_counter;
       jump_counter = 0;
     }    
 
