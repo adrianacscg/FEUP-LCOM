@@ -2,6 +2,7 @@
 #define _LOADING_XPMS_H_
 
 #include "types.h"
+#include "rtc.h"
 
 int loading_xpms();
 xpm_image_t decide_rudolph(uint16_t pos_x, uint16_t pos_y);
@@ -15,6 +16,8 @@ xpm_image_t decide_score_2_game();
 xpm_image_t decide_score_2();
 xpm_image_t decide_score_1_game();
 xpm_image_t decide_score_1();
+xpm_image_t decide_hours(rtc_time *time);
+xpm_image_t decide_minutes(rtc_time *time);
 
 
 #endif

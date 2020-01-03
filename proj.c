@@ -60,7 +60,7 @@ int(proj_main_loop)(int argc, char *argv[]) {
   message msg;
   uint8_t bit_no_kbd, bit_no_timer, bit_no_mouse;
   uint32_t r;
-  int irq_set_kbd = BIT(1), irq_set_timer = BIT(0), irq_set_mouse = BIT(12);
+  int irq_set_kbd = BIT(1), irq_set_timer = BIT(0), irq_set_mouse = BIT(12), irq_set_rtc = BIT(8);
   scancode[0] = 0;
   two_byte_scan = false;
 
@@ -76,6 +76,12 @@ int(proj_main_loop)(int argc, char *argv[]) {
     printf("Error subscribing");
     return 1;
   }
+
+  if (rtc_subscribe_int() != 0) {
+    printf("Error subscribing");
+    return 1;
+  }
+
   sys_irqdisable(&hook_id_mouse);
 
   mouse_enable_data_reporting();
@@ -110,6 +116,9 @@ int(proj_main_loop)(int argc, char *argv[]) {
             keyboard_manager();
 
           }
+          if (msg.m_notify.interrupts & irq_set_rtc) {
+            rtc_manager();
+          }  
           break;
         default:
           break;
@@ -132,6 +141,12 @@ int(proj_main_loop)(int argc, char *argv[]) {
     printf("Error unsubscribing");
     return 1;
   }
+
+  if (rtc_unsubscribe_int() != 0) {
+    printf("Error unsubscribing");
+    return 1;
+  }
+
   mouse_disable_data_reporting();
   vg_exit();
 

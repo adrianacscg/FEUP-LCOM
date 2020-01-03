@@ -47,7 +47,7 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
   /usr/include/lcom/proj.h /usr/include/lcom/types.h main_functions.h \
   types.h video_card.h keyboard.h macros_kbd.h mouse.h \
-  ps2_mouse_macros.h myutils.h macros_proj.h timer.h \
+  ps2_mouse_macros.h myutils.h macros_proj.h timer.h rtc.h \
   xpms/choose_char.xpm xpms/cursor.xpm xpms/loading.xpm xpms/border.xpm \
   xpms/not_implemented.xpm xpms/day.xpm xpms/night.xpm xpms/rudolph.xpm \
   xpms/rudolph_baixo_direita.xpm xpms/rudolph_baixo_esquerda.xpm \
@@ -71,4 +71,19 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   xpms/number_4_ingame.xpm xpms/number_5_ingame.xpm \
   xpms/number_6_ingame.xpm xpms/number_7_ingame.xpm \
   xpms/number_8_ingame.xpm xpms/number_9_ingame.xpm \
-  xpms/number_0_ingame.xpm
+  xpms/number_0_ingame.xpm xpms/time_00.xpm xpms/time_01.xpm \
+  xpms/time_02.xpm xpms/time_03.xpm xpms/time_04.xpm xpms/time_05.xpm \
+  xpms/time_06.xpm xpms/time_07.xpm xpms/time_08.xpm xpms/time_09.xpm \
+  xpms/time_10.xpm xpms/time_11.xpm xpms/time_12.xpm xpms/time_13.xpm \
+  xpms/time_14.xpm xpms/time_15.xpm xpms/time_16.xpm xpms/time_17.xpm \
+  xpms/time_18.xpm xpms/time_19.xpm xpms/time_20.xpm xpms/time_21.xpm \
+  xpms/time_22.xpm xpms/time_23.xpm xpms/time_24.xpm xpms/time_25.xpm \
+  xpms/time_26.xpm xpms/time_27.xpm xpms/time_28.xpm xpms/time_29.xpm \
+  xpms/time_30.xpm xpms/time_31.xpm xpms/time_32.xpm xpms/time_33.xpm \
+  xpms/time_34.xpm xpms/time_35.xpm xpms/time_36.xpm xpms/time_37.xpm \
+  xpms/time_38.xpm xpms/time_39.xpm xpms/time_40.xpm xpms/time_41.xpm \
+  xpms/time_42.xpm xpms/time_43.xpm xpms/time_44.xpm xpms/time_45.xpm \
+  xpms/time_46.xpm xpms/time_47.xpm xpms/time_48.xpm xpms/time_49.xpm \
+  xpms/time_50.xpm xpms/time_51.xpm xpms/time_52.xpm xpms/time_53.xpm \
+  xpms/time_54.xpm xpms/time_55.xpm xpms/time_56.xpm xpms/time_57.xpm \
+  xpms/time_58.xpm xpms/time_59.xpm

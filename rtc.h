@@ -16,6 +16,7 @@ uint8_t rtc_decimal_to_binary(uint8_t date);
 uint8_t rtc_read_register(uint32_t port);
 void rtc_write_data(uint32_t port, uint32_t data);
 void rtc_read_time(rtc_time *time);
+void rtc_ih();
 
 
 

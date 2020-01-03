@@ -9,6 +9,7 @@
 #include "macros_proj.h"
 
 int rtc_HookId;
+bool update_rtc_time;
 
 int rtc_subscribe_int(){
   return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &rtc_HookId);
@@ -74,4 +75,13 @@ void rtc_read_time(rtc_time *time){     //Reads RTC's hours, minutes and seconds
 
   var1 &= ~BIT(7);
   rtc_write_data(REG_B, var1);
+}
+
+void rtc_ih(){
+
+  uint8_t register_c = rtc_read_register(REG_C);
+
+  if(register_c & ALARM_INTERRUPT){
+    update_rtc_time = true;
+  }
 }

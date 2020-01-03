@@ -32,6 +32,7 @@ extern xpm_image_t chicken_leg;
 extern xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, score, score_ingame;
 extern xpm_image_t n1, n2, n3, n4, n5, n6, n7, n8, n9, n0;
 extern xpm_image_t n1g, n2g, n3g, n4g, n5g, n6g, n7g, n8g, n9g, n0g;
+extern xpm_image_t time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59;
 
 extern enum sleep_bar sleep_barra;
 extern enum food_bar food_barra;
@@ -41,6 +42,11 @@ static enum cloud_position nuvem = left;
 enum cloud_position proxima_nuvem;
 int jump_counter = 0;
 int score_counter = 0;
+
+extern rtc_time real_time;
+
+extern bool update_rtc_time;   //bool que vem do interrupt handler do rtc
+bool update_rtc;    //bool para ser usado na timer_manager e ser feito update na rtc_manager
 
 
 int timer_manager()
@@ -52,6 +58,7 @@ int timer_manager()
   xpm_image_t s1;
   xpm_image_t sg2;
   xpm_image_t s2;
+  xpm_image_t hours, minutes;
 
   timer_int_handler();
 
@@ -64,6 +71,10 @@ int timer_manager()
       sleep_bar = decide_sleep_bar(sleep_barra);
       food_bar = decide_food_bar(food_barra);
       play_bar = decide_play_bar(play_barra);
+
+      
+      hours = decide_hours(&real_time);
+      minutes = decide_minutes(&real_time);
     }
 
     clean_screen_and_draw();
@@ -81,6 +92,10 @@ int timer_manager()
       use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
       use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
       use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
+      if(update_rtc){
+        use_xpm(&hours,X_COUNTER ,Y_COUNTER);
+        use_xpm(&minutes,X_COUNTER + 150 ,Y_COUNTER);
+      }
     }  
     if(eat)
     {
@@ -570,4 +585,17 @@ int mouse_manager()
 }
 
 
+int rtc_manager(){
+  rtc_ih();
+  if(update_rtc_time == true){
+    rtc_read_time(&real_time);
+    update_rtc = true;
+  }
+  else{
+    update_rtc = false;
+  }
+
+  return 0;
+
+}
 

@@ -16,6 +16,7 @@
 #include "macros_proj.h"
 #include "timer.h"
 #include "types.h"
+#include "rtc.h"
 
 /*XPMS*/
 #include "xpms/choose_char.xpm"
@@ -87,6 +88,67 @@
 #include "xpms/number_8_ingame.xpm"
 #include "xpms/number_9_ingame.xpm"
 #include "xpms/number_0_ingame.xpm"
+#include "xpms/time_00.xpm"
+#include "xpms/time_01.xpm"
+#include "xpms/time_02.xpm"
+#include "xpms/time_03.xpm"
+#include "xpms/time_04.xpm"
+#include "xpms/time_05.xpm"
+#include "xpms/time_06.xpm"
+#include "xpms/time_07.xpm"
+#include "xpms/time_08.xpm"
+#include "xpms/time_09.xpm"
+#include "xpms/time_10.xpm"
+#include "xpms/time_11.xpm"
+#include "xpms/time_12.xpm"
+#include "xpms/time_13.xpm"
+#include "xpms/time_14.xpm"
+#include "xpms/time_15.xpm"
+#include "xpms/time_16.xpm"
+#include "xpms/time_17.xpm"
+#include "xpms/time_18.xpm"
+#include "xpms/time_19.xpm"
+#include "xpms/time_20.xpm"
+#include "xpms/time_21.xpm"
+#include "xpms/time_22.xpm"
+#include "xpms/time_23.xpm"
+#include "xpms/time_24.xpm"
+#include "xpms/time_25.xpm"
+#include "xpms/time_26.xpm"
+#include "xpms/time_27.xpm"
+#include "xpms/time_28.xpm"
+#include "xpms/time_29.xpm"
+#include "xpms/time_30.xpm"
+#include "xpms/time_31.xpm"
+#include "xpms/time_32.xpm"
+#include "xpms/time_33.xpm"
+#include "xpms/time_34.xpm"
+#include "xpms/time_35.xpm"
+#include "xpms/time_36.xpm"
+#include "xpms/time_37.xpm"
+#include "xpms/time_38.xpm"
+#include "xpms/time_39.xpm"
+#include "xpms/time_40.xpm"
+#include "xpms/time_41.xpm"
+#include "xpms/time_42.xpm"
+#include "xpms/time_43.xpm"
+#include "xpms/time_44.xpm"
+#include "xpms/time_45.xpm"
+#include "xpms/time_46.xpm"
+#include "xpms/time_47.xpm"
+#include "xpms/time_48.xpm"
+#include "xpms/time_49.xpm"
+#include "xpms/time_50.xpm"
+#include "xpms/time_51.xpm"
+#include "xpms/time_52.xpm"
+#include "xpms/time_53.xpm"
+#include "xpms/time_54.xpm"
+#include "xpms/time_55.xpm"
+#include "xpms/time_56.xpm"
+#include "xpms/time_57.xpm"
+#include "xpms/time_58.xpm"
+#include "xpms/time_59.xpm"
+
 
 
 //GLOBAL VARIABLES
@@ -98,6 +160,8 @@ xpm_image_t counter_00, counter_01, counter_02, counter_03, counter_04, counter_
 xpm_image_t minigame_sky, cloud, mg_menu, rudolph_cloud, score, score_ingame;
 xpm_image_t n1, n2, n3, n4, n5, n6, n7, n8, n9, n0;
 xpm_image_t n1g, n2g, n3g, n4g, n5g, n6g, n7g, n8g, n9g, n0g;
+
+xpm_image_t time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59;
 
 extern int timer_counter;
 int timer_counter_sleep = 0, timer_counter_food = 0, timer_counter_play = 0;
@@ -121,6 +185,8 @@ int loading_xpms()
   uint8_t *minigame_sky_map, *cloud_map, *minigame_menu_map, *rudolph_on_cloud_map, *score_map, *score_ingame_map;
   uint8_t *n1_map, *n2_map, *n3_map, *n4_map, *n5_map, *n6_map, *n7_map, *n8_map, *n9_map, *n0_map;
   uint8_t *n1g_map, *n2g_map, *n3g_map, *n4g_map, *n5g_map, *n6g_map, *n7g_map, *n8g_map, *n9g_map, *n0g_map;
+
+  uint8_t *map_time_00, *map_time_01, *map_time_02, *map_time_03, *map_time_04, *map_time_05, *map_time_06, *map_time_07, *map_time_08, *map_time_09, *map_time_10, *map_time_11, *map_time_12, *map_time_13, *map_time_14, *map_time_15, *map_time_16, *map_time_17, *map_time_18, *map_time_19, *map_time_20, *map_time_21, *map_time_22, *map_time_23, *map_time_24, *map_time_25, *map_time_26, *map_time_27, *map_time_28, *map_time_29, *map_time_30, *map_time_31, *map_time_32, *map_time_33, *map_time_34, *map_time_35, *map_time_36, *map_time_37, *map_time_38, *map_time_39, *map_time_40, *map_time_41, *map_time_42, *map_time_43, *map_time_44, *map_time_45, *map_time_46, *map_time_47, *map_time_48, *map_time_49, *map_time_50, *map_time_51, *map_time_52, *map_time_53, *map_time_54, *map_time_55, *map_time_56, *map_time_57, *map_time_58, *map_time_59;
 
   load_back = xpm_load(loading_xpm, XPM_5_6_5, &load_bc);
   choose_char = xpm_load(choose_char_2_xpm, XPM_5_6_5, &choose_character);
@@ -199,6 +265,67 @@ int loading_xpms()
   n8g_map = xpm_load(number_8_ingame_xpm, XPM_5_6_5, &n8g);
   n9g_map = xpm_load(number_9_ingame_xpm, XPM_5_6_5, &n9g);
   n0g_map = xpm_load(number_0_ingame_xpm, XPM_5_6_5, &n0g);
+
+  map_time_00 = xpm_load(time_00_xpm,XPM_5_6_5, &time_00); 
+  map_time_01 = xpm_load(time_01_xpm,XPM_5_6_5, &time_01); 
+  map_time_02 = xpm_load(time_02_xpm,XPM_5_6_5, &time_02); 
+  map_time_03 = xpm_load(time_03_xpm,XPM_5_6_5, &time_03); 
+  map_time_04 = xpm_load(time_04_xpm,XPM_5_6_5, &time_04); 
+  map_time_05 = xpm_load(time_05_xpm,XPM_5_6_5, &time_05); 
+  map_time_06 = xpm_load(time_06_xpm,XPM_5_6_5, &time_06); 
+  map_time_07 = xpm_load(time_07_xpm,XPM_5_6_5, &time_07); 
+  map_time_08 = xpm_load(time_08_xpm,XPM_5_6_5, &time_08); 
+  map_time_09 = xpm_load(time_09_xpm,XPM_5_6_5, &time_09); 
+  map_time_10 = xpm_load(time_10_xpm,XPM_5_6_5, &time_10);
+  map_time_11 = xpm_load(time_11_xpm,XPM_5_6_5, &time_11);
+  map_time_12 = xpm_load(time_12_xpm,XPM_5_6_5, &time_12);
+  map_time_13 = xpm_load(time_13_xpm,XPM_5_6_5, &time_13);
+  map_time_14 = xpm_load(time_14_xpm,XPM_5_6_5, &time_14);
+  map_time_15 = xpm_load(time_15_xpm,XPM_5_6_5, &time_15);
+  map_time_16 = xpm_load(time_16_xpm,XPM_5_6_5, &time_16);
+  map_time_17 = xpm_load(time_17_xpm,XPM_5_6_5, &time_17);
+  map_time_18 = xpm_load(time_18_xpm,XPM_5_6_5, &time_18);
+  map_time_19 = xpm_load(time_19_xpm,XPM_5_6_5, &time_19);
+  map_time_20 = xpm_load(time_20_xpm,XPM_5_6_5, &time_20);
+  map_time_21 = xpm_load(time_21_xpm,XPM_5_6_5, &time_21);
+  map_time_22 = xpm_load(time_22_xpm,XPM_5_6_5, &time_22);
+  map_time_23 = xpm_load(time_23_xpm,XPM_5_6_5, &time_23);
+  map_time_24 = xpm_load(time_24_xpm,XPM_5_6_5, &time_24);
+  map_time_25 = xpm_load(time_25_xpm,XPM_5_6_5, &time_25);
+  map_time_26 = xpm_load(time_26_xpm,XPM_5_6_5, &time_26);
+  map_time_27 = xpm_load(time_27_xpm,XPM_5_6_5, &time_27);
+  map_time_28 = xpm_load(time_28_xpm,XPM_5_6_5, &time_28);
+  map_time_29 = xpm_load(time_29_xpm,XPM_5_6_5, &time_29);
+  map_time_30 = xpm_load(time_30_xpm,XPM_5_6_5, &time_30);
+  map_time_31 = xpm_load(time_31_xpm,XPM_5_6_5, &time_31);
+  map_time_32 = xpm_load(time_32_xpm,XPM_5_6_5, &time_32);
+  map_time_33 = xpm_load(time_33_xpm,XPM_5_6_5, &time_33);
+  map_time_34 = xpm_load(time_34_xpm,XPM_5_6_5, &time_34);
+  map_time_35 = xpm_load(time_35_xpm,XPM_5_6_5, &time_35);
+  map_time_36 = xpm_load(time_36_xpm,XPM_5_6_5, &time_36);
+  map_time_37 = xpm_load(time_37_xpm,XPM_5_6_5, &time_37);
+  map_time_38 = xpm_load(time_38_xpm,XPM_5_6_5, &time_38);
+  map_time_39 = xpm_load(time_39_xpm,XPM_5_6_5, &time_39);
+  map_time_40 = xpm_load(time_40_xpm,XPM_5_6_5, &time_40);
+  map_time_41 = xpm_load(time_41_xpm,XPM_5_6_5, &time_41);
+  map_time_42 = xpm_load(time_42_xpm,XPM_5_6_5, &time_42);
+  map_time_43 = xpm_load(time_43_xpm,XPM_5_6_5, &time_43);
+  map_time_44 = xpm_load(time_44_xpm,XPM_5_6_5, &time_44);
+  map_time_45 = xpm_load(time_45_xpm,XPM_5_6_5, &time_45);
+  map_time_46 = xpm_load(time_46_xpm,XPM_5_6_5, &time_46);
+  map_time_47 = xpm_load(time_47_xpm,XPM_5_6_5, &time_47);
+  map_time_48 = xpm_load(time_48_xpm,XPM_5_6_5, &time_48);
+  map_time_49 = xpm_load(time_49_xpm,XPM_5_6_5, &time_49);
+  map_time_50 = xpm_load(time_50_xpm,XPM_5_6_5, &time_50);
+  map_time_51 = xpm_load(time_51_xpm,XPM_5_6_5, &time_51);
+  map_time_52 = xpm_load(time_52_xpm,XPM_5_6_5, &time_52);
+  map_time_53 = xpm_load(time_53_xpm,XPM_5_6_5, &time_53);
+  map_time_54 = xpm_load(time_54_xpm,XPM_5_6_5, &time_54);
+  map_time_55 = xpm_load(time_55_xpm,XPM_5_6_5, &time_55);
+  map_time_56 = xpm_load(time_56_xpm,XPM_5_6_5, &time_56);
+  map_time_57 = xpm_load(time_57_xpm,XPM_5_6_5, &time_57);
+  map_time_58 = xpm_load(time_58_xpm,XPM_5_6_5, &time_58);
+  map_time_59 = xpm_load(time_59_xpm,XPM_5_6_5, &time_59); 
 
   return 0;
 }
@@ -807,5 +934,34 @@ xpm_image_t decide_score_1()
       return n9;
   }
   return n0;
+}
+
+xpm_image_t decide_hours(rtc_time *time){
+  uint8_t horas = time->hours;
+  xpm_image_t hours[24] = {time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23};
+
+  for(uint8_t i = 0; i < 24; i++){
+    if(i==horas){
+      return hours[i];
+    }
+  }
+
+  //on error return 00
+  return time_00;
+
+}
+
+xpm_image_t decide_minutes(rtc_time *time){
+  uint8_t minutos = time->mins;
+  xpm_image_t minutes[60] = {time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59};
+
+  for(uint8_t i = 0; i < 60; i++){
+    if(i==minutos){
+      return minutes[i];
+    }
+  }
+
+  //on error return 00
+  return time_00;
 }
 
