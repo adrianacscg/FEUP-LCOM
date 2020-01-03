@@ -50,6 +50,7 @@ extern struct packet pack;
 extern int byte_no;
 int pos_x = 640, pos_y = 512;
 extern int hook_id_mouse;
+extern int rtc_HookId;
 
 /*BOOLS - a mudar para enum*/
 bool loading = true, choose = false, menu = false, eat = false, sleeping = false, mini_game = false, eating_action = false, lobby = false, ate = false, mg_enter = false, lost = false, start_again = false;
@@ -81,6 +82,10 @@ int(proj_main_loop)(int argc, char *argv[]) {
     printf("Error subscribing");
     return 1;
   }
+
+  
+
+  sys_irqenable(&rtc_HookId);
 
   rtc_enable_int();
 

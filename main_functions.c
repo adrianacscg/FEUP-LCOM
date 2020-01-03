@@ -93,7 +93,7 @@ int timer_manager()
       use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
       use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
       
-      if(true){
+      if(true){   //this is if(true) because i'm testing stuff, it should be if(update_rtc)
         rtc_horas = decide_hours(&real_time);
         rtc_minutos = decide_minutes(&real_time);
         use_xpm(&rtc_horas,X_COUNTER ,150);   
@@ -589,8 +589,9 @@ int mouse_manager()
 
 
 int rtc_manager(){
-  rtc_ih();
   rtc_read_time(&real_time);
+  rtc_ih();
+  
   if(update_rtc_time == true){
     rtc_read_time(&real_time);
     update_rtc = true;

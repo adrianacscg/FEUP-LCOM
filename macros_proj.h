@@ -61,10 +61,10 @@
 #define RTC_ADDR_REG            0x70 //must be loaded with the address of the RTC register to be accessed
 #define RTC_DATA_REG            0x71 //used to transfer the data to/from the RTC's register accessed
 
-#define REG_A                   0x0a
-#define REG_B                   0x0b
-#define REG_C                   0x0c
-#define REG_D                   0x0d
+#define REG_A                   0x0A
+#define REG_B                   0x0B
+#define REG_C                   0x0C
+#define REG_D                   0x0D
 
 #define RTC_HOURS               0x04
 #define RTC_MINS                0x02
