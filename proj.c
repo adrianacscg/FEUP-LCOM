@@ -82,6 +82,8 @@ int(proj_main_loop)(int argc, char *argv[]) {
     return 1;
   }
 
+  rtc_enable_int();
+
   sys_irqdisable(&hook_id_mouse);
 
   mouse_enable_data_reporting();
@@ -141,13 +143,9 @@ int(proj_main_loop)(int argc, char *argv[]) {
     printf("Error unsubscribing");
     return 1;
   }
-
-  if (rtc_unsubscribe_int() != 0) {
-    printf("Error unsubscribing");
-    return 1;
-  }
-
+  
   mouse_disable_data_reporting();
+  rtc_disable_int();
   vg_exit();
 
   return 0;

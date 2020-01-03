@@ -43,7 +43,7 @@ enum cloud_position proxima_nuvem;
 int jump_counter = 0;
 int score_counter = 0;
 
-extern rtc_time real_time;
+rtc_time real_time;
 
 extern bool update_rtc_time;   //bool que vem do interrupt handler do rtc
 bool update_rtc;    //bool para ser usado na timer_manager e ser feito update na rtc_manager
@@ -93,8 +93,8 @@ int timer_manager()
       use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
       use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
       if(update_rtc){
-        use_xpm(&hours,X_COUNTER ,Y_COUNTER);
-        use_xpm(&minutes,X_COUNTER + 150 ,Y_COUNTER);
+        use_xpm(&hours,X_COUNTER ,Y_COUNTER);   //still testing position
+        use_xpm(&minutes,X_COUNTER + 150 ,Y_COUNTER);   //still testing position
       }
     }  
     if(eat)
