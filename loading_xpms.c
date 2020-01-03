@@ -937,31 +937,24 @@ xpm_image_t decide_score_1()
 }
 
 xpm_image_t decide_hours(rtc_time *time){
+  
   uint8_t horas = time->hours;
-  xpm_image_t hours[24] = {time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23};
+  
+  xpm_image_t array_hours[24] = {time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23};
 
-  for(uint8_t i = 0; i < 24; i++){
-    if(i==horas){
-      return hours[i];
-    }
-  }
-
-  //on error return 00
-  return time_00;
-
+  return array_hours[horas];
+ 
 }
 
 xpm_image_t decide_minutes(rtc_time *time){
+  
   uint8_t minutos = time->mins;
-  xpm_image_t minutes[60] = {time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59};
 
-  for(uint8_t i = 0; i < 60; i++){
-    if(i==minutos){
-      return minutes[i];
-    }
-  }
+  xpm_image_t array_minutes[60] = {time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59};
 
-  //on error return 00
-  return time_00;
+  
+  return array_minutes[minutos];
+    
+  
 }
 

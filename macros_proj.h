@@ -70,6 +70,7 @@
 #define RTC_MINS                0x02
 #define RTC_SECS                0x00
 
-#define ALARM_INTERRUPT         BIT(5)
+#define HOURS_ALARM_INTERRUPT         BIT(5)
+#define MINUTES_ALARM_INTERRUPT       BIT(3)
 
 #endif

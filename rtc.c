@@ -81,7 +81,9 @@ void rtc_ih(){
 
   uint8_t register_c = rtc_read_register(REG_C);
 
-  if(register_c & ALARM_INTERRUPT){
+  if((register_c & HOURS_ALARM_INTERRUPT) || (register_c & MINUTES_ALARM_INTERRUPT) ){
     update_rtc_time = true;
   }
+
+
 }

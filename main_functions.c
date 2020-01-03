@@ -58,7 +58,7 @@ int timer_manager()
   xpm_image_t s1;
   xpm_image_t sg2;
   xpm_image_t s2;
-  xpm_image_t hours, minutes;
+  xpm_image_t rtc_horas, rtc_minutos;
 
   timer_int_handler();
 
@@ -73,8 +73,8 @@ int timer_manager()
       play_bar = decide_play_bar(play_barra);
 
       
-      hours = decide_hours(&real_time);
-      minutes = decide_minutes(&real_time);
+      rtc_horas = decide_hours(&real_time);
+      rtc_minutos = decide_minutes(&real_time);
     }
 
     clean_screen_and_draw();
@@ -92,9 +92,12 @@ int timer_manager()
       use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
       use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
       use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
-      if(update_rtc){
-        use_xpm(&hours,X_COUNTER ,Y_COUNTER);   //still testing position
-        use_xpm(&minutes,X_COUNTER + 150 ,Y_COUNTER);   //still testing position
+      
+      if(true){
+        rtc_horas = decide_hours(&real_time);
+        rtc_minutos = decide_minutes(&real_time);
+        use_xpm(&rtc_horas,X_COUNTER ,150);   
+        use_xpm(&rtc_minutos,X_COUNTER + 150 ,150);   
       }
     }  
     if(eat)
@@ -587,6 +590,7 @@ int mouse_manager()
 
 int rtc_manager(){
   rtc_ih();
+  rtc_read_time(&real_time);
   if(update_rtc_time == true){
     rtc_read_time(&real_time);
     update_rtc = true;
