@@ -23,9 +23,12 @@ int rtc_subscribe_int(){
     return 1;
   }
   */
+  
+
+  sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &rtc_HookId);
   sys_irqenable(&rtc_HookId);
 
-  return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &rtc_HookId);
+  return 0;
 
 }
 
