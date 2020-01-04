@@ -86,4 +86,4 @@ loading_xpms.o: loading_xpms.c /usr/include/lcom/lcf.h \
   xpms/time_46.xpm xpms/time_47.xpm xpms/time_48.xpm xpms/time_49.xpm \
   xpms/time_50.xpm xpms/time_51.xpm xpms/time_52.xpm xpms/time_53.xpm \
   xpms/time_54.xpm xpms/time_55.xpm xpms/time_56.xpm xpms/time_57.xpm \
-  xpms/time_58.xpm xpms/time_59.xpm
+  xpms/time_58.xpm xpms/time_59.xpm xpms/dois_pontos.xpm

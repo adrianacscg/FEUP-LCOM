@@ -148,6 +148,7 @@
 #include "xpms/time_57.xpm"
 #include "xpms/time_58.xpm"
 #include "xpms/time_59.xpm"
+#include "xpms/dois_pontos.xpm"
 
 
 
@@ -162,6 +163,8 @@ xpm_image_t n1, n2, n3, n4, n5, n6, n7, n8, n9, n0;
 xpm_image_t n1g, n2g, n3g, n4g, n5g, n6g, n7g, n8g, n9g, n0g;
 
 xpm_image_t time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59;
+
+xpm_image_t dois_pontos;
 
 extern int timer_counter;
 int timer_counter_sleep = 0, timer_counter_food = 0, timer_counter_play = 0;
@@ -187,6 +190,8 @@ int loading_xpms()
   uint8_t *n1g_map, *n2g_map, *n3g_map, *n4g_map, *n5g_map, *n6g_map, *n7g_map, *n8g_map, *n9g_map, *n0g_map;
 
   uint8_t *map_time_00, *map_time_01, *map_time_02, *map_time_03, *map_time_04, *map_time_05, *map_time_06, *map_time_07, *map_time_08, *map_time_09, *map_time_10, *map_time_11, *map_time_12, *map_time_13, *map_time_14, *map_time_15, *map_time_16, *map_time_17, *map_time_18, *map_time_19, *map_time_20, *map_time_21, *map_time_22, *map_time_23, *map_time_24, *map_time_25, *map_time_26, *map_time_27, *map_time_28, *map_time_29, *map_time_30, *map_time_31, *map_time_32, *map_time_33, *map_time_34, *map_time_35, *map_time_36, *map_time_37, *map_time_38, *map_time_39, *map_time_40, *map_time_41, *map_time_42, *map_time_43, *map_time_44, *map_time_45, *map_time_46, *map_time_47, *map_time_48, *map_time_49, *map_time_50, *map_time_51, *map_time_52, *map_time_53, *map_time_54, *map_time_55, *map_time_56, *map_time_57, *map_time_58, *map_time_59;
+
+  uint8_t *dois_pontos_map;
 
   load_back = xpm_load(loading_xpm, XPM_5_6_5, &load_bc);
   choose_char = xpm_load(choose_char_2_xpm, XPM_5_6_5, &choose_character);
@@ -326,6 +331,8 @@ int loading_xpms()
   map_time_57 = xpm_load(time_57_xpm,XPM_5_6_5, &time_57);
   map_time_58 = xpm_load(time_58_xpm,XPM_5_6_5, &time_58);
   map_time_59 = xpm_load(time_59_xpm,XPM_5_6_5, &time_59); 
+
+  dois_pontos_map = xpm_load(dois_pontos_xpm, XPM_5_6_5, &dois_pontos);
 
   return 0;
 }

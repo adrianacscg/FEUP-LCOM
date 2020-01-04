@@ -34,6 +34,8 @@ extern xpm_image_t n1, n2, n3, n4, n5, n6, n7, n8, n9, n0;
 extern xpm_image_t n1g, n2g, n3g, n4g, n5g, n6g, n7g, n8g, n9g, n0g;
 extern xpm_image_t time_00, time_01, time_02, time_03, time_04, time_05, time_06, time_07, time_08, time_09, time_10, time_11, time_12, time_13, time_14, time_15, time_16, time_17, time_18, time_19, time_20, time_21, time_22, time_23, time_24, time_25, time_26, time_27, time_28, time_29, time_30, time_31, time_32, time_33, time_34, time_35, time_36, time_37, time_38, time_39, time_40, time_41, time_42, time_43, time_44, time_45, time_46, time_47, time_48, time_49, time_50, time_51, time_52, time_53, time_54, time_55, time_56, time_57, time_58, time_59;
 
+extern xpm_image_t dois_pontos;
+
 extern enum sleep_bar sleep_barra;
 extern enum food_bar food_barra;
 extern enum play_bar play_barra;
@@ -96,8 +98,9 @@ int timer_manager()
      
       rtc_horas = decide_hours(&real_time);
       rtc_minutos = decide_minutes(&real_time);
-      use_xpm(&rtc_horas,X_COUNTER ,150);   
-      use_xpm(&rtc_minutos,X_COUNTER + 150 ,150);   
+      use_xpm(&rtc_horas,X_COUNTER ,150);
+      use_xpm(&dois_pontos,X_COUNTER + 105, 150);   
+      use_xpm(&rtc_minutos,X_COUNTER + 160 ,150);   
       
     }  
     if(eat)
@@ -108,6 +111,12 @@ int timer_manager()
       use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
       use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
       use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
+
+      rtc_horas = decide_hours(&real_time);
+      rtc_minutos = decide_minutes(&real_time);
+      use_xpm(&rtc_horas,X_COUNTER ,150);
+      use_xpm(&dois_pontos,X_COUNTER + 105, 150);   
+      use_xpm(&rtc_minutos,X_COUNTER + 160 ,150);
 
       if(eating_action)
       {
@@ -121,7 +130,13 @@ int timer_manager()
       use_xpm(&character, CHAR_X, CHAR_Y); 
       use_xpm(&sleep_bar,X_BARS, Y_SLEEP_BAR);
       use_xpm(&food_bar,X_BARS, Y_FOOD_BAR);
-      use_xpm(&play_bar,X_BARS, Y_PLAY_BAR); 
+      use_xpm(&play_bar,X_BARS, Y_PLAY_BAR);
+
+      rtc_horas = decide_hours(&real_time);
+      rtc_minutos = decide_minutes(&real_time);
+      use_xpm(&rtc_horas,X_COUNTER ,150);
+      use_xpm(&dois_pontos,X_COUNTER + 105, 150);   
+      use_xpm(&rtc_minutos,X_COUNTER + 160 ,150); 
     }    
 
     if(mini_game)
