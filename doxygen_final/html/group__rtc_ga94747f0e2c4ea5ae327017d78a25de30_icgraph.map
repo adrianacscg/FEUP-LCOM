@@ -1,0 +1,4 @@
+<map id="rtc_read_time" name="rtc_read_time">
+<area shape="rect" id="node2" href="$group__main__functions.html#gac1cad6d7c8507831aa74d165972cb1a9" title="Function that calls the RTC interrupt handler and manages all the RTC related variables and functions..." alt="" coords="155,5,249,32"/>
+<area shape="rect" id="node3" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="297,5,407,32"/>
+</map>

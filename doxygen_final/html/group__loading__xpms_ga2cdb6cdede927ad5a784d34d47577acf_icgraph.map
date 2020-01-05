@@ -1,0 +1,4 @@
+<map id="decide_food_bar" name="decide_food_bar">
+<area shape="rect" id="node2" href="$group__main__functions.html#ga230337632aac7d793969e926a66f0249" title="Function that calls the timer interrupt handler and manages all the timer related variables and funct..." alt="" coords="171,5,279,32"/>
+<area shape="rect" id="node3" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="327,5,436,32"/>
+</map>

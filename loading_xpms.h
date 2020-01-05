@@ -5,7 +5,7 @@
 #include "rtc.h"
 
 
-/** @defgroup Functions loading_xpms.c
+/** @defgroup loading_xpms
  * @{
  *
  * Functions used to help working with the xpms
@@ -20,7 +20,7 @@
 int loading_xpms();     
 
 /**
- * @brief Decides in what position the rodolph should be in (used to change rudolph's eyes)
+ * @brief Decides in what position the rudolph should be in (used to change rudolph's eyes)
  * 
  * Depends on the mouse postion
  * 
@@ -69,7 +69,7 @@ xpm_image_t decide_play_bar(enum play_bar pb);
 xpm_image_t decide_food_bar(enum food_bar fb);
 
 /**
- * @brief Decides the value of the counter of the minigame
+ * @brief Decides which xpm_image_t corresponds to the value of the counter of the minigame
  * 
  * The counter changes with time
  * Depends on time
@@ -81,7 +81,7 @@ xpm_image_t decide_food_bar(enum food_bar fb);
 xpm_image_t decide_time(enum counter_bar c);
 
 /**
- * @brief Decides the value of dozens number of the scores
+ * @brief Decides which enum score_bar_2 corresponds to the value of dozens number of the scores
  * 
  * This value changes when the character presses the correct key 10 times
  * 
@@ -90,29 +90,74 @@ xpm_image_t decide_time(enum counter_bar c);
 enum score_bar_2 event_2();
 
 /**
- * @brief Decides the value of unities number of the scores
+ * @brief Decides which enum score_bar_1 corresponds to the value of units number of the scores
  * 
  * This value changes when the character presses the correct key 1 time
  * 
- * @return enum value of the unities number for the score
+ * @return enum value of the units number for the score
  */
 enum score_bar_1 event_1();
 
 /**
- * @brief Decides the value of the counter of the minigame
+ * @brief Decides which xpm_image_t corresponds to the dozens of the score of the minigame while playing
  * 
- * The counter changes with time
+ * The counter changes with the value of the enum returned in event_2()
  * Depends on time
  * 
- * @param c current time
- * 
- * @return the xpm_image_t of the correspondent counter value
+ * @return the xpm_image_t of the correspondent value of the dozens in the minigame
  */
 xpm_image_t decide_score_2_game();
+
+/**
+ * @brief Decides which xpm_image_t corresponds to the dozens of the score of the minigame after losing
+ * 
+ * The counter changes with the value of the enum returned in event_2()
+ * Depends on time
+ * 
+ * @return the xpm_image_t of the correspondent value of the dozens out of the minigame
+ */
 xpm_image_t decide_score_2();
+
+/**
+ * @brief Decides which xpm_image_t corresponds to the units of the score of the minigame while playing
+ * 
+ * The counter changes with the value of the enum returned in event_1()
+ * Depends on time
+ * 
+ * @return the xpm_image_t of the correspondent value of the units in the minigame
+ */
 xpm_image_t decide_score_1_game();
+
+/**
+ * @brief Decides which xpm_image_t corresponds to the units of the score of the minigame after losing
+ * 
+ * The counter changes with the value of the enum returned in event_1()
+ * Depends on time
+ * 
+ * @return the xpm_image_t of the correspondent value of the units out of the minigame
+ */
 xpm_image_t decide_score_1();
+
+/**
+ * @brief Decides which xpm_image_t corresponds to the RTC
+ * 
+ * Depends on the time of the computer
+ * 
+ * @param time pointer to struct that has the value of the hours, minutes and seconds detected by the RTC
+ * 
+ * @return the xpm_image_t of the correspondent hours (equal to the hours of the RTC)
+ */
 xpm_image_t decide_hours(rtc_time *time);
+
+/**
+ * @brief Decides which xpm_image_t corresponds to the RTC
+ * 
+ * Depends on the time of the computer
+ * 
+ * @param time pointer to struct that has the value of the hours, minutes and seconds detected by the RTC
+ * 
+ * @return the xpm_image_t of the correspondent minutes (equal to the minutes of the RTC)
+ */
 xpm_image_t decide_minutes(rtc_time *time);
 
 

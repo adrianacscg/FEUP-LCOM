@@ -181,6 +181,7 @@ int timer_manager()
         {
           lost = true;
           start_again = true;
+          mg_enter = false;
         }
         
       }
@@ -454,6 +455,7 @@ int keyboard_manager()
     mg_enter = true;
     lost = false;
     score_counter = 0;
+    counter_barra = C15;
   }
 
 
@@ -475,6 +477,7 @@ int keyboard_manager()
     else if(nuvem == left && proxima_nuvem == center && scancode[0] == A_BREAK_CODE)
     {
       lost = true;
+      mg_enter = false;
       start_again = true;
       counter_barra = C15;
       jump_counter = 0;
@@ -489,6 +492,7 @@ int keyboard_manager()
     else if(nuvem == right && proxima_nuvem == center && scancode[0] == D_BREAK_CODE)
     {
       lost = true;
+      mg_enter = false;
       start_again = true;
       counter_barra = C15;
       jump_counter = 0;
@@ -503,6 +507,7 @@ int keyboard_manager()
     else if(nuvem == center && proxima_nuvem == left && scancode[0] == D_BREAK_CODE)
     {
       lost = true;
+      mg_enter = false;
       start_again = true;
       counter_barra = C15;
       jump_counter = 0;
@@ -517,6 +522,7 @@ int keyboard_manager()
     else if(nuvem == center && proxima_nuvem == right && scancode[0] == A_BREAK_CODE)
     {
       lost = true;
+      mg_enter = false;
       start_again = true;
       counter_barra = C15;
       jump_counter = 0;
@@ -530,6 +536,7 @@ int keyboard_manager()
     if(jump_counter == 25 && scancode[0] == A_BREAK_CODE)
     {
       lost = true;
+      mg_enter = false;
       start_again = true;
       counter_barra = C15;
       jump_counter = 0;      

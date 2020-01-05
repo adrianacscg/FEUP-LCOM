@@ -1,0 +1,4 @@
+<map id="rtc_disable_int" name="rtc_disable_int">
+<area shape="rect" id="node2" href="$group__rtc.html#ga72153103ac037b1a162a9099f001b83c" title="Function that reads from the register and reads on the returned variable. " alt="" coords="160,5,279,32"/>
+<area shape="rect" id="node3" href="$group__rtc.html#gade198e3189c6f8195cde4e404671f980" title="Function that writes data to a register. " alt="" coords="167,56,271,83"/>
+</map>

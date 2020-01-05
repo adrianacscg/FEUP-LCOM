@@ -1,0 +1,8 @@
+<map id="mouse_manager" name="mouse_manager">
+<area shape="rect" id="node2" href="$group__mouse.html#ga210374b50462acdedab00df64d5cea3c" title="Mouse interrupt handler. " alt="" coords="180,5,259,32"/>
+<area shape="rect" id="node3" href="$group__mouse.html#ga7d38d68c1222c116e819346c1c3d36f1" title="Function that builds a mouse packet. " alt="" coords="172,56,267,83"/>
+<area shape="rect" id="node6" href="$group__myutils.html#gad2cb7db3e303727f643020a668377947" title="Function that gets the bigger of 2 numbers. " alt="" coords="196,107,243,133"/>
+<area shape="rect" id="node7" href="$group__myutils.html#ga86fabf639ab773666d2c7936b104a668" title="Function that gets the smallest of 2 numbers. " alt="" coords="198,157,241,184"/>
+<area shape="rect" id="node4" href="$group__mouse.html#gaca472150bedc1bf9e0008ffd9929b165" title="Function that reverts the cpl2 value of the byte[1] (xDelta) of the mouse packet. ..." alt="" coords="315,31,415,57"/>
+<area shape="rect" id="node5" href="$group__mouse.html#gaf9b79deb06853057db6850cb4b7ec917" title="Function that reverts the cpl2 value of the byte[2] (YDelta) of the mouse packet. ..." alt="" coords="315,81,415,108"/>
+</map>

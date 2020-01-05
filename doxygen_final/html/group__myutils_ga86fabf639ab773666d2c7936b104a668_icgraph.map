@@ -1,0 +1,7 @@
+<map id="min" name="min">
+<area shape="rect" id="node2" href="$group__main__functions.html#ga8c9f11a032076f800d5d8e3faea17c9a" title="Function that calls the mouse interrupt handler and manages all the mouse related variables and funct..." alt="" coords="219,5,337,32"/>
+<area shape="rect" id="node4" href="$group__video__card.html#gacfacfc0ba6b20cfe99f211e93870bc4c" title="Functions that draws an xpm_image_t. " alt="" coords="96,56,171,83"/>
+<area shape="rect" id="node3" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="541,31,651,57"/>
+<area shape="rect" id="node5" href="$group__main__functions.html#ga230337632aac7d793969e926a66f0249" title="Function that calls the timer interrupt handler and manages all the timer related variables and funct..." alt="" coords="385,56,493,83"/>
+<area shape="rect" id="node6" href="$group__main__functions.html#ga527ecae69a4a84b54c2c1e0fdfb4b72d" title="Function that works with the logic of the minigame. " alt="" coords="231,107,325,133"/>
+</map>

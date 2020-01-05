@@ -54,6 +54,19 @@ extern int hook_id_mouse;
 /*BOOLS - a mudar para enum*/
 bool loading = true, choose = false, menu = false, eat = false, sleeping = false, mini_game = false, eating_action = false, lobby = false, ate = false, mg_enter = false, lost = false, start_again = false;
 
+/** @defgroup main_loop
+ * @{
+ *
+ * Main_loop of the project
+ */
+
+/**
+ * @brief Main loop of the project
+ * 
+ * Driver Receive loop
+ * 
+ * @return Return 0 upon success
+ */
 int(proj_main_loop)(int argc, char *argv[]) {
   
   int ipc_status;
@@ -144,12 +157,12 @@ int(proj_main_loop)(int argc, char *argv[]) {
     printf("Error unsubscribing");
     return 1;
   }
-  /*
+  
   if (rtc_unsubscribe_int() != 0) {
     printf("Error unsubscribing");
     return 1;
   }
-  */
+  
   mouse_disable_data_reporting();
   rtc_disable_int();
   vg_exit();

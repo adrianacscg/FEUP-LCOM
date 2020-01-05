@@ -1,0 +1,104 @@
+\hypertarget{group__video__card}{}\section{Video\+\_\+card}
+\label{group__video__card}\index{Video\+\_\+card@{Video\+\_\+card}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__video__card_ga430711ee8dd8b9944c9393b6f333f48d}{set\+\_\+graphics\+\_\+mode} (uint16\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Initializes the video module in graphics mode. \end{DoxyCompactList}\item 
+int \hyperlink{group__video__card_gacfacfc0ba6b20cfe99f211e93870bc4c}{use\+\_\+xpm} (xpm\+\_\+image\+\_\+t $\ast$map, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Functions that draws an xpm\+\_\+image\+\_\+t. \end{DoxyCompactList}\item 
+int \hyperlink{group__video__card_ga0b82755b321546975e5137f974c4ce3d}{clean\+\_\+screen\+\_\+and\+\_\+draw} ()
+\begin{DoxyCompactList}\small\item\em Function used to clean the screen to change images. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__video__card_ga4f5703f9b121dc5e85673680a1082c7d}\label{group__video__card_ga4f5703f9b121dc5e85673680a1082c7d}} 
+void \hyperlink{group__video__card_ga4f5703f9b121dc5e85673680a1082c7d}{D\+Bto\+VM} ()
+\begin{DoxyCompactList}\small\item\em Function that passes the information from the double buffer to the video memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+video card main functions 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__video__card_ga0b82755b321546975e5137f974c4ce3d}\label{group__video__card_ga0b82755b321546975e5137f974c4ce3d}} 
+\index{Video\+\_\+card@{Video\+\_\+card}!clean\+\_\+screen\+\_\+and\+\_\+draw@{clean\+\_\+screen\+\_\+and\+\_\+draw}}
+\index{clean\+\_\+screen\+\_\+and\+\_\+draw@{clean\+\_\+screen\+\_\+and\+\_\+draw}!Video\+\_\+card@{Video\+\_\+card}}
+\subsubsection{\texorpdfstring{clean\+\_\+screen\+\_\+and\+\_\+draw()}{clean\_screen\_and\_draw()}}
+{\footnotesize\ttfamily int clean\+\_\+screen\+\_\+and\+\_\+draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function used to clean the screen to change images. 
+
+\begin{DoxyReturn}{Returns}
+Returns 0 upon success 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__video__card_ga0b82755b321546975e5137f974c4ce3d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__video__card_ga430711ee8dd8b9944c9393b6f333f48d}\label{group__video__card_ga430711ee8dd8b9944c9393b6f333f48d}} 
+\index{Video\+\_\+card@{Video\+\_\+card}!set\+\_\+graphics\+\_\+mode@{set\+\_\+graphics\+\_\+mode}}
+\index{set\+\_\+graphics\+\_\+mode@{set\+\_\+graphics\+\_\+mode}!Video\+\_\+card@{Video\+\_\+card}}
+\subsubsection{\texorpdfstring{set\+\_\+graphics\+\_\+mode()}{set\_graphics\_mode()}}
+{\footnotesize\ttfamily int set\+\_\+graphics\+\_\+mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Initializes the video module in graphics mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & 16-\/bit V\+BE mode to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Virtual address V\+R\+AM was mapped to. N\+U\+LL, upon failure. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{group__video__card_ga430711ee8dd8b9944c9393b6f333f48d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__video__card_gacfacfc0ba6b20cfe99f211e93870bc4c}\label{group__video__card_gacfacfc0ba6b20cfe99f211e93870bc4c}} 
+\index{Video\+\_\+card@{Video\+\_\+card}!use\+\_\+xpm@{use\+\_\+xpm}}
+\index{use\+\_\+xpm@{use\+\_\+xpm}!Video\+\_\+card@{Video\+\_\+card}}
+\subsubsection{\texorpdfstring{use\+\_\+xpm()}{use\_xpm()}}
+{\footnotesize\ttfamily int use\+\_\+xpm (\begin{DoxyParamCaption}\item[{xpm\+\_\+image\+\_\+t $\ast$}]{map,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Functions that draws an xpm\+\_\+image\+\_\+t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & xpm\+\_\+image\+\_\+t that is gonna be draw \\
+\hline
+{\em x} & x position of the image \\
+\hline
+{\em y} & y position of the image\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{group__video__card_gacfacfc0ba6b20cfe99f211e93870bc4c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__video__card_gacfacfc0ba6b20cfe99f211e93870bc4c_icgraph}
+\end{center}
+\end{figure}

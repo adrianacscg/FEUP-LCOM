@@ -1,0 +1,5 @@
+<map id="rtc_decimal_to_binary" name="rtc_decimal_to_binary">
+<area shape="rect" id="node2" href="$group__rtc.html#ga94747f0e2c4ea5ae327017d78a25de30" title="Function that reads RTC&#39;s hours, minutes and seconds and saves it on the RTC time struct..." alt="" coords="203,5,304,32"/>
+<area shape="rect" id="node3" href="$group__main__functions.html#gac1cad6d7c8507831aa74d165972cb1a9" title="Function that calls the RTC interrupt handler and manages all the RTC related variables and functions..." alt="" coords="352,5,447,32"/>
+<area shape="rect" id="node4" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="495,5,604,32"/>
+</map>

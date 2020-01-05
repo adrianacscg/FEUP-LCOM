@@ -1,0 +1,4 @@
+<map id="build_packet" name="build_packet">
+<area shape="rect" id="node2" href="$group__mouse.html#gaca472150bedc1bf9e0008ffd9929b165" title="Function that reverts the cpl2 value of the byte[1] (xDelta) of the mouse packet. ..." alt="" coords="148,5,248,32"/>
+<area shape="rect" id="node3" href="$group__mouse.html#gaf9b79deb06853057db6850cb4b7ec917" title="Function that reverts the cpl2 value of the byte[2] (YDelta) of the mouse packet. ..." alt="" coords="148,56,248,83"/>
+</map>

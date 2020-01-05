@@ -1,0 +1,251 @@
+\hypertarget{group__rtc}{}\section{Rtc}
+\label{group__rtc}\index{Rtc@{Rtc}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structrtc__time}{rtc\+\_\+time}
+\begin{DoxyCompactList}\small\item\em Struct that stores the information of the R\+TC hours, minutes and seconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__rtc_gabd8de825e876e8ef94c64ac616f68a11}{rtc\+\_\+subscribe\+\_\+int} ()
+\begin{DoxyCompactList}\small\item\em Function that subscribes R\+TC interruptions. \end{DoxyCompactList}\item 
+int \hyperlink{group__rtc_gab8f17bf5280c908c8b199a90fefcc758}{rtc\+\_\+unsubscribe\+\_\+int} ()
+\begin{DoxyCompactList}\small\item\em Function that unsubscribes R\+TC interruptions. \end{DoxyCompactList}\item 
+void \hyperlink{group__rtc_ga0f8758bf0df6766696104c3be6c0c6ea}{rtc\+\_\+disable\+\_\+int} ()
+\begin{DoxyCompactList}\small\item\em Function that disables R\+TC interruptions. \end{DoxyCompactList}\item 
+void \hyperlink{group__rtc_ga8d098a183fdb5fc38da0335041c4d3db}{rtc\+\_\+enable\+\_\+int} ()
+\begin{DoxyCompactList}\small\item\em Function that enables R\+TC interruptions. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__rtc_ga862729c9ed50edc422841b6b8bc5aa43}{rtc\+\_\+decimal\+\_\+to\+\_\+binary} (uint8\+\_\+t date)
+\begin{DoxyCompactList}\small\item\em Function that converts the variable date from decimal to binary. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__rtc_ga72153103ac037b1a162a9099f001b83c}{rtc\+\_\+read\+\_\+register} (uint32\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Function that reads from the register and reads on the returned variable. \end{DoxyCompactList}\item 
+void \hyperlink{group__rtc_gade198e3189c6f8195cde4e404671f980}{rtc\+\_\+write\+\_\+data} (uint32\+\_\+t port, uint32\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Function that writes data to a register. \end{DoxyCompactList}\item 
+void \hyperlink{group__rtc_ga94747f0e2c4ea5ae327017d78a25de30}{rtc\+\_\+read\+\_\+time} (\hyperlink{structrtc__time}{rtc\+\_\+time} $\ast$time)
+\begin{DoxyCompactList}\small\item\em Function that reads R\+TC\textquotesingle{}s hours, minutes and seconds and saves it on the R\+TC time struct. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__rtc_ga75dad42881d64cf07cf1bdc2979a7056}\label{group__rtc_ga75dad42881d64cf07cf1bdc2979a7056}} 
+void \hyperlink{group__rtc_ga75dad42881d64cf07cf1bdc2979a7056}{rtc\+\_\+ih} ()
+\begin{DoxyCompactList}\small\item\em R\+TC\textquotesingle{}s interrupt handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__rtc_ga2593972e8de36f4c0ea51255e770b48b}\label{group__rtc_ga2593972e8de36f4c0ea51255e770b48b}} 
+uint8\+\_\+t {\bfseries secs}
+\item 
+\mbox{\Hypertarget{group__rtc_gaafb8fcb8e18658aceea7aa3dbf8a589e}\label{group__rtc_gaafb8fcb8e18658aceea7aa3dbf8a589e}} 
+uint8\+\_\+t {\bfseries mins}
+\item 
+\mbox{\Hypertarget{group__rtc_ga00a531a34a1d603329df5778f1203ab6}\label{group__rtc_ga00a531a34a1d603329df5778f1203ab6}} 
+uint8\+\_\+t {\bfseries hours}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+rtc variable and functions 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__rtc_ga862729c9ed50edc422841b6b8bc5aa43}\label{group__rtc_ga862729c9ed50edc422841b6b8bc5aa43}} 
+\index{Rtc@{Rtc}!rtc\+\_\+decimal\+\_\+to\+\_\+binary@{rtc\+\_\+decimal\+\_\+to\+\_\+binary}}
+\index{rtc\+\_\+decimal\+\_\+to\+\_\+binary@{rtc\+\_\+decimal\+\_\+to\+\_\+binary}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+decimal\+\_\+to\+\_\+binary()}{rtc\_decimal\_to\_binary()}}
+{\footnotesize\ttfamily uint8\+\_\+t rtc\+\_\+decimal\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{date }\end{DoxyParamCaption})}
+
+
+
+Function that converts the variable date from decimal to binary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & variable tha is converted (hours, minutes or seconds)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+date after being converted 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__rtc_ga862729c9ed50edc422841b6b8bc5aa43_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_ga0f8758bf0df6766696104c3be6c0c6ea}\label{group__rtc_ga0f8758bf0df6766696104c3be6c0c6ea}} 
+\index{Rtc@{Rtc}!rtc\+\_\+disable\+\_\+int@{rtc\+\_\+disable\+\_\+int}}
+\index{rtc\+\_\+disable\+\_\+int@{rtc\+\_\+disable\+\_\+int}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+disable\+\_\+int()}{rtc\_disable\_int()}}
+{\footnotesize\ttfamily void rtc\+\_\+disable\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that disables R\+TC interruptions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{group__rtc_ga0f8758bf0df6766696104c3be6c0c6ea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{group__rtc_ga0f8758bf0df6766696104c3be6c0c6ea_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_ga8d098a183fdb5fc38da0335041c4d3db}\label{group__rtc_ga8d098a183fdb5fc38da0335041c4d3db}} 
+\index{Rtc@{Rtc}!rtc\+\_\+enable\+\_\+int@{rtc\+\_\+enable\+\_\+int}}
+\index{rtc\+\_\+enable\+\_\+int@{rtc\+\_\+enable\+\_\+int}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+enable\+\_\+int()}{rtc\_enable\_int()}}
+{\footnotesize\ttfamily void rtc\+\_\+enable\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that enables R\+TC interruptions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{group__rtc_ga8d098a183fdb5fc38da0335041c4d3db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{group__rtc_ga8d098a183fdb5fc38da0335041c4d3db_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_ga72153103ac037b1a162a9099f001b83c}\label{group__rtc_ga72153103ac037b1a162a9099f001b83c}} 
+\index{Rtc@{Rtc}!rtc\+\_\+read\+\_\+register@{rtc\+\_\+read\+\_\+register}}
+\index{rtc\+\_\+read\+\_\+register@{rtc\+\_\+read\+\_\+register}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+read\+\_\+register()}{rtc\_read\_register()}}
+{\footnotesize\ttfamily uint8\+\_\+t rtc\+\_\+read\+\_\+register (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Function that reads from the register and reads on the returned variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & register wich you want to read from\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data from the register 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__rtc_ga72153103ac037b1a162a9099f001b83c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_ga94747f0e2c4ea5ae327017d78a25de30}\label{group__rtc_ga94747f0e2c4ea5ae327017d78a25de30}} 
+\index{Rtc@{Rtc}!rtc\+\_\+read\+\_\+time@{rtc\+\_\+read\+\_\+time}}
+\index{rtc\+\_\+read\+\_\+time@{rtc\+\_\+read\+\_\+time}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+read\+\_\+time()}{rtc\_read\_time()}}
+{\footnotesize\ttfamily void rtc\+\_\+read\+\_\+time (\begin{DoxyParamCaption}\item[{\hyperlink{structrtc__time}{rtc\+\_\+time} $\ast$}]{time }\end{DoxyParamCaption})}
+
+
+
+Function that reads R\+TC\textquotesingle{}s hours, minutes and seconds and saves it on the R\+TC time struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & pointer to a variable of type struct \hyperlink{structrtc__time}{rtc\+\_\+time} \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{group__rtc_ga94747f0e2c4ea5ae327017d78a25de30_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__rtc_ga94747f0e2c4ea5ae327017d78a25de30_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_gabd8de825e876e8ef94c64ac616f68a11}\label{group__rtc_gabd8de825e876e8ef94c64ac616f68a11}} 
+\index{Rtc@{Rtc}!rtc\+\_\+subscribe\+\_\+int@{rtc\+\_\+subscribe\+\_\+int}}
+\index{rtc\+\_\+subscribe\+\_\+int@{rtc\+\_\+subscribe\+\_\+int}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+subscribe\+\_\+int()}{rtc\_subscribe\_int()}}
+{\footnotesize\ttfamily int rtc\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that subscribes R\+TC interruptions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{group__rtc_gabd8de825e876e8ef94c64ac616f68a11_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_gab8f17bf5280c908c8b199a90fefcc758}\label{group__rtc_gab8f17bf5280c908c8b199a90fefcc758}} 
+\index{Rtc@{Rtc}!rtc\+\_\+unsubscribe\+\_\+int@{rtc\+\_\+unsubscribe\+\_\+int}}
+\index{rtc\+\_\+unsubscribe\+\_\+int@{rtc\+\_\+unsubscribe\+\_\+int}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+unsubscribe\+\_\+int()}{rtc\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int rtc\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that unsubscribes R\+TC interruptions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{group__rtc_gab8f17bf5280c908c8b199a90fefcc758_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__rtc_gade198e3189c6f8195cde4e404671f980}\label{group__rtc_gade198e3189c6f8195cde4e404671f980}} 
+\index{Rtc@{Rtc}!rtc\+\_\+write\+\_\+data@{rtc\+\_\+write\+\_\+data}}
+\index{rtc\+\_\+write\+\_\+data@{rtc\+\_\+write\+\_\+data}!Rtc@{Rtc}}
+\subsubsection{\texorpdfstring{rtc\+\_\+write\+\_\+data()}{rtc\_write\_data()}}
+{\footnotesize\ttfamily void rtc\+\_\+write\+\_\+data (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{port,  }\item[{uint32\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Function that writes data to a register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & register in which you want to write \\
+\hline
+{\em data} & value that is gonna be written to the register \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__rtc_gade198e3189c6f8195cde4e404671f980_icgraph}
+\end{center}
+\end{figure}

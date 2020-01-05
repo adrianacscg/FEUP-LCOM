@@ -1,0 +1,165 @@
+\hypertarget{group__main__functions}{}\section{Main\+\_\+functions}
+\label{group__main__functions}\index{Main\+\_\+functions@{Main\+\_\+functions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__main__functions_ga230337632aac7d793969e926a66f0249}{timer\+\_\+manager} ()
+\begin{DoxyCompactList}\small\item\em Function that calls the timer interrupt handler and manages all the timer related variables and functions. \end{DoxyCompactList}\item 
+int \hyperlink{group__main__functions_gaaf064e0d3192ae8797d78dcb08bc838e}{keyboard\+\_\+manager} ()
+\begin{DoxyCompactList}\small\item\em Function that calls the keyboard interrupt handler and manages all the keyboard related variables and functions. \end{DoxyCompactList}\item 
+int \hyperlink{group__main__functions_ga8c9f11a032076f800d5d8e3faea17c9a}{mouse\+\_\+manager} ()
+\begin{DoxyCompactList}\small\item\em Function that calls the mouse interrupt handler and manages all the mouse related variables and functions. \end{DoxyCompactList}\item 
+int \hyperlink{group__main__functions_gac1cad6d7c8507831aa74d165972cb1a9}{rtc\+\_\+manager} ()
+\begin{DoxyCompactList}\small\item\em Function that calls the R\+TC interrupt handler and manages all the R\+TC related variables and functions. \end{DoxyCompactList}\item 
+void \hyperlink{group__main__functions_ga527ecae69a4a84b54c2c1e0fdfb4b72d}{draw\+\_\+clouds} (int jump\+\_\+counter)
+\begin{DoxyCompactList}\small\item\em Function that works with the logic of the minigame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main Functions of the Project 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__main__functions_ga527ecae69a4a84b54c2c1e0fdfb4b72d}\label{group__main__functions_ga527ecae69a4a84b54c2c1e0fdfb4b72d}} 
+\index{Main\+\_\+functions@{Main\+\_\+functions}!draw\+\_\+clouds@{draw\+\_\+clouds}}
+\index{draw\+\_\+clouds@{draw\+\_\+clouds}!Main\+\_\+functions@{Main\+\_\+functions}}
+\subsubsection{\texorpdfstring{draw\+\_\+clouds()}{draw\_clouds()}}
+{\footnotesize\ttfamily void draw\+\_\+clouds (\begin{DoxyParamCaption}\item[{int}]{jump\+\_\+counter }\end{DoxyParamCaption})}
+
+
+
+Function that works with the logic of the minigame. 
+
+The clouds of the minigame change when the jump\+\_\+counter assumes different values
+
+
+\begin{DoxyParams}{Parameters}
+{\em jump\+\_\+counter} & variable used to help getting the score of the minigame and to use in the switch to decide wich cloud should be draw \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{group__main__functions_ga527ecae69a4a84b54c2c1e0fdfb4b72d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__main__functions_ga527ecae69a4a84b54c2c1e0fdfb4b72d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__main__functions_gaaf064e0d3192ae8797d78dcb08bc838e}\label{group__main__functions_gaaf064e0d3192ae8797d78dcb08bc838e}} 
+\index{Main\+\_\+functions@{Main\+\_\+functions}!keyboard\+\_\+manager@{keyboard\+\_\+manager}}
+\index{keyboard\+\_\+manager@{keyboard\+\_\+manager}!Main\+\_\+functions@{Main\+\_\+functions}}
+\subsubsection{\texorpdfstring{keyboard\+\_\+manager()}{keyboard\_manager()}}
+{\footnotesize\ttfamily int keyboard\+\_\+manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calls the keyboard interrupt handler and manages all the keyboard related variables and functions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{group__main__functions_gaaf064e0d3192ae8797d78dcb08bc838e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{group__main__functions_gaaf064e0d3192ae8797d78dcb08bc838e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__main__functions_ga8c9f11a032076f800d5d8e3faea17c9a}\label{group__main__functions_ga8c9f11a032076f800d5d8e3faea17c9a}} 
+\index{Main\+\_\+functions@{Main\+\_\+functions}!mouse\+\_\+manager@{mouse\+\_\+manager}}
+\index{mouse\+\_\+manager@{mouse\+\_\+manager}!Main\+\_\+functions@{Main\+\_\+functions}}
+\subsubsection{\texorpdfstring{mouse\+\_\+manager()}{mouse\_manager()}}
+{\footnotesize\ttfamily int mouse\+\_\+manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calls the mouse interrupt handler and manages all the mouse related variables and functions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__main__functions_ga8c9f11a032076f800d5d8e3faea17c9a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__main__functions_ga8c9f11a032076f800d5d8e3faea17c9a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__main__functions_gac1cad6d7c8507831aa74d165972cb1a9}\label{group__main__functions_gac1cad6d7c8507831aa74d165972cb1a9}} 
+\index{Main\+\_\+functions@{Main\+\_\+functions}!rtc\+\_\+manager@{rtc\+\_\+manager}}
+\index{rtc\+\_\+manager@{rtc\+\_\+manager}!Main\+\_\+functions@{Main\+\_\+functions}}
+\subsubsection{\texorpdfstring{rtc\+\_\+manager()}{rtc\_manager()}}
+{\footnotesize\ttfamily int rtc\+\_\+manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calls the R\+TC interrupt handler and manages all the R\+TC related variables and functions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__main__functions_gac1cad6d7c8507831aa74d165972cb1a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{group__main__functions_gac1cad6d7c8507831aa74d165972cb1a9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__main__functions_ga230337632aac7d793969e926a66f0249}\label{group__main__functions_ga230337632aac7d793969e926a66f0249}} 
+\index{Main\+\_\+functions@{Main\+\_\+functions}!timer\+\_\+manager@{timer\+\_\+manager}}
+\index{timer\+\_\+manager@{timer\+\_\+manager}!Main\+\_\+functions@{Main\+\_\+functions}}
+\subsubsection{\texorpdfstring{timer\+\_\+manager()}{timer\_manager()}}
+{\footnotesize\ttfamily int timer\+\_\+manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that calls the timer interrupt handler and manages all the timer related variables and functions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__main__functions_ga230337632aac7d793969e926a66f0249_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{group__main__functions_ga230337632aac7d793969e926a66f0249_icgraph}
+\end{center}
+\end{figure}

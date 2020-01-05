@@ -1,0 +1,7 @@
+<map id="rtc_manager" name="rtc_manager">
+<area shape="rect" id="node2" href="$group__rtc.html#ga94747f0e2c4ea5ae327017d78a25de30" title="Function that reads RTC&#39;s hours, minutes and seconds and saves it on the RTC time struct..." alt="" coords="148,56,249,83"/>
+<area shape="rect" id="node6" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC&#39;s interrupt handler. " alt="" coords="171,5,226,32"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga72153103ac037b1a162a9099f001b83c" title="Function that reads from the register and reads on the returned variable. " alt="" coords="313,5,431,32"/>
+<area shape="rect" id="node4" href="$group__rtc.html#gade198e3189c6f8195cde4e404671f980" title="Function that writes data to a register. " alt="" coords="320,56,424,83"/>
+<area shape="rect" id="node5" href="$group__rtc.html#ga862729c9ed50edc422841b6b8bc5aa43" title="Function that converts the variable date from decimal to binary. " alt="" coords="297,107,447,133"/>
+</map>

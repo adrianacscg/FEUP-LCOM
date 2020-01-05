@@ -464,6 +464,8 @@ xpm_image_t decide_play_bar(enum play_bar pb)
 
   if(mg_enter)
   {
+    play_barra = PLAY_4;
+    return play_4;/*
     if(timer_counter_play == 15)
     {
       timer_counter_play = 0;
@@ -489,7 +491,7 @@ xpm_image_t decide_play_bar(enum play_bar pb)
         default:
           break;
       }
-    }
+    }*/
   }
 
   if(timer_counter_play == 10)

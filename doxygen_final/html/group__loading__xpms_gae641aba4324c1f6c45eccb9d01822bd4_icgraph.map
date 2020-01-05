@@ -1,0 +1,4 @@
+<map id="decide_minutes" name="decide_minutes">
+<area shape="rect" id="node2" href="$group__main__functions.html#ga230337632aac7d793969e926a66f0249" title="Function that calls the timer interrupt handler and manages all the timer related variables and funct..." alt="" coords="167,5,275,32"/>
+<area shape="rect" id="node3" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="323,5,432,32"/>
+</map>

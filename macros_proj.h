@@ -3,10 +3,10 @@
 
 #include <stdint.h>
 
-/** @defgroup Project Macros + RTC Macros 
+/** @defgroup Project Macros
  * @{
  *
- * Constants used in the project (Positions) + Macros of the RTC
+ * Constants used in the project (Positions)
  */
 
 #define CHAR_X                324 /**< @brief character position (x) */
@@ -15,7 +15,7 @@
 /* Screen Divisions */
 
 #define MIN_ESQUERDA_X        0   /**< @brief minimum value of the left rectangle of the screen (x) */
-#define MAX_ESQUERDA_X        341 /**< @brief minimum value of the left rectangle of the screen (x) */ */
+#define MAX_ESQUERDA_X        341 /**< @brief minimum value of the left rectangle of the screen (x) */
 #define MIN_MEIO_X            341 /**< @brief minimum value of the center rectangle of the screen (x)  */
 #define MAX_MEIO_X            682 /**< @brief maximum value of the center rectangle of the screen (x)  */
 #define MIN_DIREITA_X         682 /**< @brief minimum value of the right rectangle of the screen (x)  */
@@ -63,25 +63,26 @@
 #define CLOUD_RIGHT           637 /**< @brief x position of the right cloud */
 #define CLOUD_TOP             231 /**< @brief y position of the top cloud */
 
-/*************RTC****************/
+/** @defgroup RTC_Macros 
+ * @{
+ *
+ * Macros of the RTC
+ */
 
-#define RTC_IRQ                  8 /**< @brief RTC IRQ */ 
-//The RTC has only one IRQ line, which is connected to line IRQ0 of PIC2, i.e. IRQ8  
-#define RTC_ADDR_REG            0x70 /**< @brief RTC address register*/ 
-//must be loaded with the address of the RTC register to be accessed 
-#define RTC_DATA_REG            0x71 /**< @brief RTC data register*/ 
-//used to transfer the data to/from the RTC's register accessed 
+#define RTC_IRQ                  8            /**< @brief RTC IRQ */  
+#define RTC_ADDR_REG            0x70          /**< @brief RTC address register*/ 
+#define RTC_DATA_REG            0x71          /**< @brief RTC data register*/ 
 
-#define REG_A                   0x0A
-#define REG_B                   0x0B
-#define REG_C                   0x0C
-#define REG_D                   0x0D
+#define REG_A                   0x0A          /**< @brief Register A*/  
+#define REG_B                   0x0B          /**< @brief Register B*/
+#define REG_C                   0x0C          /**< @brief Register C*/
+#define REG_D                   0x0D          /**< @brief Register D*/
 
-#define RTC_HOURS               0x04
-#define RTC_MINS                0x02
-#define RTC_SECS                0x00
+#define RTC_HOURS               0x04          /**< @brief Register that stores the value of the hours*/ 
+#define RTC_MINS                0x02          /**< @brief Register that stores the value of the minutes*/ 
+#define RTC_SECS                0x00          /**< @brief Register that stores the value of the seconds*/ 
 
-#define HOURS_ALARM_INTERRUPT         BIT(5)
-#define MINUTES_ALARM_INTERRUPT       BIT(3)
+#define HOURS_ALARM_INTERRUPT         BIT(5)  /**< @brief Set to 1 if hours change*/  
+#define MINUTES_ALARM_INTERRUPT       BIT(3)  /**< @brief Set to 1 if minutes change*/  
 
 #endif

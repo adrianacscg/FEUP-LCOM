@@ -11,19 +11,7 @@
 int rtc_HookId = RTC_IRQ;
 bool update_rtc_time;
 
-int rtc_subscribe_int(){
-  /* Ainda, uma
-  vez que é necessário ler o registo C caso haja uma interrupção pendente,
-  convém efectuar uma leitura aquando da subscrição das interrupções para
-  garantir que não será um problema.*/
-  /*
-  uint8_t register_c = rtc_read_register(REG_C);
-  if((register_c & HOURS_ALARM_INTERRUPT) || (register_c & MINUTES_ALARM_INTERRUPT)){
-    printf("Error subscribing, pending interruption");
-    return 1;
-  }
-  */
-  
+int rtc_subscribe_int(){  
 
   sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &rtc_HookId);
   sys_irqenable(&rtc_HookId);

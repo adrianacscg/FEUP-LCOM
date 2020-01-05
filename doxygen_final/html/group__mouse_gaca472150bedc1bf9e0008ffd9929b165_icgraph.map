@@ -1,0 +1,5 @@
+<map id="cpl2_revert_x" name="cpl2_revert_x">
+<area shape="rect" id="node2" href="$group__mouse.html#ga7d38d68c1222c116e819346c1c3d36f1" title="Function that builds a mouse packet. " alt="" coords="153,5,248,32"/>
+<area shape="rect" id="node3" href="$group__main__functions.html#ga8c9f11a032076f800d5d8e3faea17c9a" title="Function that calls the mouse interrupt handler and manages all the mouse related variables and funct..." alt="" coords="296,5,415,32"/>
+<area shape="rect" id="node4" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="463,5,572,32"/>
+</map>

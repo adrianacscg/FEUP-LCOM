@@ -1,0 +1,21 @@
+<map id="timer_manager" name="timer_manager">
+<area shape="rect" id="node2" href="$group__timer.html#ga91a2072306c68353712a6b771287dc2c" title="Timer 0 interrupt handler. " alt="" coords="182,5,303,32"/>
+<area shape="rect" id="node3" href="$group__loading__xpms.html#ga5dbbff5de875a1305fdf7ed265fc73c8" title="Decides which xpm_image_t corresponds to the value of the counter of the minigame. " alt="" coords="197,56,289,83"/>
+<area shape="rect" id="node4" href="$group__loading__xpms.html#gada234fac1a8886b19a988eb80e99ef15" title="Decides in what position the rudolph should be in (used to change rudolph&#39;s eyes) ..." alt="" coords="188,107,297,133"/>
+<area shape="rect" id="node5" href="$group__loading__xpms.html#gafe3e8d1842749e3b8831f03eaff01c99" title="Decides in what position the sleep bar should be in. " alt="" coords="181,157,304,184"/>
+<area shape="rect" id="node6" href="$group__loading__xpms.html#ga2cdb6cdede927ad5a784d34d47577acf" title="Decides in what position the eat bar should be in. " alt="" coords="184,208,301,235"/>
+<area shape="rect" id="node7" href="$group__loading__xpms.html#gad678e45b98e3cc05dca5b24dad2be564" title="Decides in what position the fun bar should be in. " alt="" coords="185,259,301,285"/>
+<area shape="rect" id="node8" href="$group__loading__xpms.html#ga62a40150916b92b39ae83d800e3612f1" title="Decides which xpm_image_t corresponds to the RTC. " alt="" coords="193,309,292,336"/>
+<area shape="rect" id="node9" href="$group__loading__xpms.html#gae641aba4324c1f6c45eccb9d01822bd4" title="Decides which xpm_image_t corresponds to the RTC. " alt="" coords="186,360,299,387"/>
+<area shape="rect" id="node10" href="$group__video__card.html#ga0b82755b321546975e5137f974c4ce3d" title="Function used to clean the screen to change images. " alt="" coords="161,411,324,437"/>
+<area shape="rect" id="node11" href="$group__video__card.html#gacfacfc0ba6b20cfe99f211e93870bc4c" title="Functions that draws an xpm_image_t. " alt="" coords="372,500,447,527"/>
+<area shape="rect" id="node13" href="$group__loading__xpms.html#ga5808a0af7a81c9213427d1173ea4bfdb" title="Decides which xpm_image_t corresponds to the units of the score of the minigame while playing..." alt="" coords="167,563,319,589"/>
+<area shape="rect" id="node15" href="$group__loading__xpms.html#ga2427af4195752a8d1c1f52ec6ade7735" title="Decides which xpm_image_t corresponds to the dozens of the score of the minigame while playing..." alt="" coords="167,664,319,691"/>
+<area shape="rect" id="node17" href="$group__loading__xpms.html#ga49c14da168cc130190ad4808e0c889bf" title="Decides which xpm_image_t corresponds to the units of the score of the minigame after losing..." alt="" coords="186,613,299,640"/>
+<area shape="rect" id="node18" href="$group__loading__xpms.html#ga3ff28b6df0ced24968db40bec439452e" title="Decides which xpm_image_t corresponds to the dozens of the score of the minigame after losing..." alt="" coords="186,715,299,741"/>
+<area shape="rect" id="node19" href="$group__main__functions.html#ga527ecae69a4a84b54c2c1e0fdfb4b72d" title="Function that works with the logic of the minigame. " alt="" coords="195,512,290,539"/>
+<area shape="rect" id="node20" href="$group__video__card.html#ga4f5703f9b121dc5e85673680a1082c7d" title="Function that passes the information from the double buffer to the video memory. " alt="" coords="207,765,279,792"/>
+<area shape="rect" id="node12" href="$group__myutils.html#ga86fabf639ab773666d2c7936b104a668" title="Function that gets the smallest of 2 numbers. " alt="" coords="495,500,537,527"/>
+<area shape="rect" id="node14" href="$group__loading__xpms.html#ga70f5397af0d313815b96cf662cd48f65" title="Decides which enum score_bar_1 corresponds to the value of units number of the scores. " alt="" coords="375,576,443,603"/>
+<area shape="rect" id="node16" href="$group__loading__xpms.html#gac00aab23f7677ce5eee5748c335c994f" title="Decides which enum score_bar_2 corresponds to the value of dozens number of the scores. " alt="" coords="375,689,443,716"/>
+</map>

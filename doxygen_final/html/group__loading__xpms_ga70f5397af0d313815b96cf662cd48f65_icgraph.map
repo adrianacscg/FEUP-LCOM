@@ -1,0 +1,6 @@
+<map id="event_1" name="event_1">
+<area shape="rect" id="node2" href="$group__loading__xpms.html#ga5808a0af7a81c9213427d1173ea4bfdb" title="Decides which xpm_image_t corresponds to the units of the score of the minigame while playing..." alt="" coords="121,5,273,32"/>
+<area shape="rect" id="node5" href="$group__loading__xpms.html#ga49c14da168cc130190ad4808e0c889bf" title="Decides which xpm_image_t corresponds to the units of the score of the minigame after losing..." alt="" coords="141,56,254,83"/>
+<area shape="rect" id="node3" href="$group__main__functions.html#ga230337632aac7d793969e926a66f0249" title="Function that calls the timer interrupt handler and manages all the timer related variables and funct..." alt="" coords="321,31,429,57"/>
+<area shape="rect" id="node4" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="477,31,587,57"/>
+</map>

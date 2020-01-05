@@ -1,0 +1,73 @@
+\hypertarget{group__keyboard}{}\section{Keyboard}
+\label{group__keyboard}\index{Keyboard@{Keyboard}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int() \hyperlink{group__keyboard_ga4ac9231a99a664d6a9f0b69767e0d707}{kbd\+\_\+subscribe\+\_\+int} (uint8\+\_\+t $\ast$bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Function that subscribes keyboard interruptions. \end{DoxyCompactList}\item 
+int() \hyperlink{group__keyboard_gaee0a7b54ee426fade9c780418d110fe0}{kbd\+\_\+unsubscribe\+\_\+int} ()
+\begin{DoxyCompactList}\small\item\em Function that unsubscribes keyboard interruptions. \end{DoxyCompactList}\item 
+bool() \hyperlink{group__keyboard_gaf96a6542e8b323e01ea7865bd841a445}{breakormake} (uint8\+\_\+t scancode)
+\begin{DoxyCompactList}\small\item\em Function that decides if the code obtained is a break code or a make code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__keyboard_gaea970a154161a35f6894898a092ed70a}\label{group__keyboard_gaea970a154161a35f6894898a092ed70a}} 
+void() \hyperlink{group__keyboard_gaea970a154161a35f6894898a092ed70a}{kbc\+\_\+ih} ()
+\begin{DoxyCompactList}\small\item\em keyboard\textquotesingle{}s interrupt handler \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main Functions of the Keyboard 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__keyboard_gaf96a6542e8b323e01ea7865bd841a445}\label{group__keyboard_gaf96a6542e8b323e01ea7865bd841a445}} 
+\index{Keyboard@{Keyboard}!breakormake@{breakormake}}
+\index{breakormake@{breakormake}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{breakormake()}{breakormake()}}
+{\footnotesize\ttfamily bool() breakormake (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scancode }\end{DoxyParamCaption})}
+
+
+
+Function that decides if the code obtained is a break code or a make code. 
+
+\begin{DoxyReturn}{Returns}
+Return true if it\textquotesingle{}s a make code. False otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__keyboard_ga4ac9231a99a664d6a9f0b69767e0d707}\label{group__keyboard_ga4ac9231a99a664d6a9f0b69767e0d707}} 
+\index{Keyboard@{Keyboard}!kbd\+\_\+subscribe\+\_\+int@{kbd\+\_\+subscribe\+\_\+int}}
+\index{kbd\+\_\+subscribe\+\_\+int@{kbd\+\_\+subscribe\+\_\+int}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{kbd\+\_\+subscribe\+\_\+int()}{kbd\_subscribe\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+Function that subscribes keyboard interruptions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{group__keyboard_ga4ac9231a99a664d6a9f0b69767e0d707_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{group__keyboard_gaee0a7b54ee426fade9c780418d110fe0}\label{group__keyboard_gaee0a7b54ee426fade9c780418d110fe0}} 
+\index{Keyboard@{Keyboard}!kbd\+\_\+unsubscribe\+\_\+int@{kbd\+\_\+unsubscribe\+\_\+int}}
+\index{kbd\+\_\+unsubscribe\+\_\+int@{kbd\+\_\+unsubscribe\+\_\+int}!Keyboard@{Keyboard}}
+\subsubsection{\texorpdfstring{kbd\+\_\+unsubscribe\+\_\+int()}{kbd\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int() kbd\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that unsubscribes keyboard interruptions. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 upon success 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{group__keyboard_gaee0a7b54ee426fade9c780418d110fe0_icgraph}
+\end{center}
+\end{figure}

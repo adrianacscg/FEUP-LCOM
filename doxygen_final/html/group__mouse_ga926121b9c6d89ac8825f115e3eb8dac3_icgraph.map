@@ -1,0 +1,7 @@
+<map id="send_command" name="send_command">
+<area shape="rect" id="node2" href="$group__mouse.html#ga90562ec8e969e4014d728adb0fc91e31" title="Function that enables the mouse data reporting. " alt="" coords="168,5,317,32"/>
+<area shape="rect" id="node3" href="$group__mouse.html#ga7e311379d4d64f88873ef8ade5c82a25" title="Function that disables the mouse data reporting. " alt="" coords="172,57,313,98"/>
+<area shape="rect" id="node5" href="$group__mouse.html#ga58c043049bb31ec7bad65594a8341a5d" title="Function that sets the stream mode. " alt="" coords="179,123,306,149"/>
+<area shape="rect" id="node6" href="$group__mouse.html#gad25b8bf71166026dbf192c6d013d54d6" title="Function that sends a command to read data from the mouse. " alt="" coords="203,173,282,200"/>
+<area shape="rect" id="node4" href="$group__main__loop.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Main loop of the project. " alt="" coords="365,64,475,91"/>
+</map>
