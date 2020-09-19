@@ -1,13 +1,10 @@
-# LCOM---Projeto
-Projeto final da cadeira de [Laboratório de Computadores](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436435) (2ºano 1ºsemestre MIEIC)
+# LCOM
+All code written in collaboration between [Adriana Gonçalves](https://github.com/adrianacscg) and [Beatriz Mendes](https://github.com/biam05).
 
-Students: 
+Project developed for the [Computer Lab](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436435) course @ FEUP.
 
-•	[Adriana Cruz e Silva da Costa Gonçalves](https://github.com/adrianacscg)
 
-•	[Beatriz Costa Silva Mendes](https://github.com/biam05)
-
-Project Title: Christmas Tamagotchi
+# Project Title: Christmas Tamagotchi
 
 Project Description:
 In our project we are going to build a Tamagotchi with a Christmas theme all throughout, by creating a similar looking virtual device that you can interact with in a similar way you would with a real physical Tamagotchi. You’ll be able to pick your virtual pet, name it, feed it, make it sleep and play a mini game with it. There will also be 2 bars with the level of hunger and sleep of your pet. You’ll also be able to check the real time on the Tamagotchi’s screen.
@@ -33,33 +30,7 @@ Functionality: Both the mouse’s left button and the mouse’s movement.
 •	Video Card
 Role: All the graphics of the Tamagotchi will be done using the video card.
 Functionality: The video card graphics mode.
+
 •	RTC
 Role: Display the real time on the Tamagotchi’s screen. 
 Functionality: Real time clock.
-
-Description of the modules to be developed:
-
-All graphics you can see will be done using the video card, and we will do a Christmas theme all throughout.
-In this Tamagotchi you will first be able to choose a character that you want to be your virtual pet. To pick the character you will click on it using the mouse.
-Then you’ll be able to give your pet a name, using the keyboard. 
-After that you’ll be taken to the main Tamagotchi window in which you’ll be able to do the basic interactions you can find on a real Tamagotchi: feeding and sleeping. Both of these will also be done using the mouse. To make it sleep you’ll need to click in the Tamagotchi’s sleep button. To feed your pet, there will be food next to your pet on the screen and you’ll need to click on it, drag it onto your pet, and release the button.
-At the corner of the window you’ll be able to find the real time, like you usually can in a real Tamagotchi, which will be implemented using the RTC.
-Also on the corner of the window there will be a sleep and hunger bar that will decrease with time, using the timer, and increase after you feed your pet or make it sleep. 
-The last feature will be a mini game, accessed by clicking on the game icon with the mouse, in which your virtual pet will jump to as many platforms as possible in a certain time period. This game will use the keyboard to jump to the left or right, and the timer to count the time until it reaches 0 (meaning until time is up).
-
-Development Plan:
-
-Week 25/11- 1/12: Start the Tamagotchi’s main window, implementing the video card and timer part.
-
-Week 2/12 – 8/12: Finish the main window’s graphics and timer use. Create the “Pick your pet” window (which includes using the mouse to click and the keyboard to name the pet).
-
-Week 9/12 – 15/12: Implement the feeding feature in the main window, which uses the mouse’s movement.
-
-Week 16/12 – 22/12: This is the last week of class, by which time the main features should be implemented. Polish what was implemented in the weeks before. Start implementing the mini-game.
-
-Week 23/12 – 29/12: Finish implementing the mini game. Start the RTC.
-
-Week 30/12 – 05/01: Finish the RTC. Polish anything there’s left. 
-
-Project submission deadline: 06/01/2020 at 20pm.
-
