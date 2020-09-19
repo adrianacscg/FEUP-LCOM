@@ -1,11 +1,11 @@
 # LCOM---Projeto
-Projeto final da cadeira de Laboratório de Computadores (2ºano 1ºsemestre MIEIC)
+Projeto final da cadeira de [Laboratório de Computadores](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436435) (2ºano 1ºsemestre MIEIC)
 
 Students: 
 
-•	Adriana Cruz e Silva da Costa Gonçalves (201808911)
+•	[Adriana Cruz e Silva da Costa Gonçalves](https://github.com/adrianacscg)
 
-•	Beatriz Costa Silva Mendes (201806551)
+•	[Beatriz Costa Silva Mendes](https://github.com/biam05)
 
 Project Title: Christmas Tamagotchi
 
