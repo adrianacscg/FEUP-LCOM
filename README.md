@@ -10,6 +10,7 @@ Project Description:
 In our project we are going to build a Tamagotchi with a Christmas theme all throughout, by creating a similar looking virtual device that you can interact with in a similar way you would with a real physical Tamagotchi. You’ll be able to pick your virtual pet, name it, feed it, make it sleep and play a mini game with it. There will also be 2 bars with the level of hunger and sleep of your pet. You’ll also be able to check the real time on the Tamagotchi’s screen.
 
 Devices to be used:
+
 •	Timer/Counter
 Role: Count the time the pet has to jump on the platforms in the mini game i.e. the time until it reaches zero.
 Count the time passing to decrease the sleep and hunger bars.
